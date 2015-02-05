@@ -1,6 +1,21 @@
 ﻿<Window x:Class="CocktailApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="750" Width="825">
-    <Grid/>
+        Title="MainWindow" Height="550" Width="900">
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="550" Width="900" Orientation="Horizontal">
+        <StackPanel Name="EntireList" Height="550" Width="200" HorizontalAlignment="Left" Margin="10, 20, 10, 20"  Background="#FFDCDADA"/>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Name="OnHandWrap" Height="300" Width="300" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,10,10" Background="#FFE2DEDE">
+                    <ComboBox Name="TypeSelect" Width="150" Margin="0,20,0,0"/>
+                    <ListBox Name="IngOptions" Height="200" Margin="0,10,0,0"/>
+                </StackPanel>
+                <StackPanel Name="MyBar" Height="300" Width="300" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,10,10" Background="#FFE2DEDE"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Name="PotentialDrinks" Height="200" Width="300" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,20,20" Background="#FFD1D0D0"></StackPanel>
+                <StackPanel Name="FavoriteDrinks" Height="200" Width="300" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20" Background="#FFD1D0D0"></StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
 </Window>

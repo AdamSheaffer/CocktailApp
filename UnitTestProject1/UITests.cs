@@ -1,10 +1,12 @@
 ﻿using System;
 using System.IO;
+//using System.Windows.Forms;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestStack.White;
 using TestStack.White.Factory;
 using TestStack.White.UIItems;
 using TestStack.White.UIItems.WindowItems;
+
 
 namespace CocktailAppTest
 {
@@ -29,8 +31,12 @@ namespace CocktailAppTest
         [TestMethod]
         public void TestZeroState()
         {
-            
+            TestStack.White.UIItems.ListBoxItems.ComboBox combo_box = window.Get<TestStack.White.UIItems.ListBoxItems.ComboBox>("TypeSelect");
+            TestStack.White.UIItems.ListBoxItems.ListBox list_box = window.Get<TestStack.White.UIItems.ListBoxItems.ListBox>("IngOptions");
+
+            Assert.AreEqual( combo_box.SelectedItem.Text, "");
         }
+            
 
         [ClassCleanup]
         public static void TearDown()
