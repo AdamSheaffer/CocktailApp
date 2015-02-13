@@ -62,9 +62,16 @@
   <ItemGroup>
     <Compile Include="UITests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ModelIngredientTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WpfApplication3\CocktailApp.csproj">
+      <Project>{a5a88c60-06e7-44ba-a942-97728bd5e8d0}</Project>
+      <Name>CocktailApp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

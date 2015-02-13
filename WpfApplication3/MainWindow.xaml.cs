@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.Entity;
+using CocktailApp.Repository;
+using CocktailApp.Model;
+using System.Collections.ObjectModel;
 
 namespace CocktailApp
 {
@@ -20,9 +24,34 @@ namespace CocktailApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        public RecipeRepository recRepo = new RecipeRepository();
+        public IngredientRepository IngRepo = new IngredientRepository();
+        public DBPopulator DbPopulator = new DBPopulator();
+
+
         public MainWindow()
         {
+            if (recRepo.RecipeCount() < 1)
+            {
+                DbPopulator.Populate();
+            }
             InitializeComponent();
+            AllRecipesList.DataContext = recRepo.Context();
+            AllFruits.DataContext = IngRepo.IngType("Fruit");
+            AllMixers.DataContext = IngRepo.IngType("Mixer");
+            AllBitters.DataContext = IngRepo.IngType("Bitters");
+            AllLiqueurs.DataContext = IngRepo.IngType("Liqueur");
+
+            
         }
+
+        private void AddToMyLiqueurs(object sender, MouseButtonEventArgs e)
+        {
+            TextBlock myTextBlock = sender as TextBlock;
+            string ingredientName = myTextBlock.Text;
+            
+        }
+
+       
     }
 }

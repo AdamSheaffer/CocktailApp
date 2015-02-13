@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IO;
-//using System.Windows.Forms;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestStack.White;
 using TestStack.White.Factory;
 using TestStack.White.UIItems;
 using TestStack.White.UIItems.WindowItems;
+using TestStack.White.UIItems.Finders;
 
 
 namespace CocktailAppTest
@@ -22,7 +22,7 @@ namespace CocktailAppTest
         {
             test_context = _context;
             var applicationDir = _context.DeploymentDirectory;
-            var applicationPath = Path.Combine(applicationDir, "..\\..\\..\\CocktailAppTest\\bin\\Debug\\CocktailApp");
+            var applicationPath = Path.Combine(applicationDir, "..\\..\\..\\UnitTestProject1\\bin\\Debug\\WpfApplication3");
             application = Application.Launch(applicationPath);
             window = application.GetWindow("MainWindow", InitializeOption.NoCache);
 
@@ -31,10 +31,13 @@ namespace CocktailAppTest
         [TestMethod]
         public void TestZeroState()
         {
-            TestStack.White.UIItems.ListBoxItems.ComboBox combo_box = window.Get<TestStack.White.UIItems.ListBoxItems.ComboBox>("TypeSelect");
-            TestStack.White.UIItems.ListBoxItems.ListBox list_box = window.Get<TestStack.White.UIItems.ListBoxItems.ListBox>("IngOptions");
+                 
+        }
 
-            Assert.AreEqual( combo_box.SelectedItem.Text, "");
+        [TestMethod]
+        public void MyTestMethod()
+        {
+            Assert.IsTrue(1 == 1);
         }
             
 
