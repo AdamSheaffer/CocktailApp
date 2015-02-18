@@ -11,11 +11,11 @@ namespace CocktailApp.Repository
 {
     public class IngredientRepository
     {
-        private IngredientContext _dbContext;
+        private RecipeContext _dbContext;
 
         public IngredientRepository() 
         {
-            _dbContext = new IngredientContext();
+            _dbContext = new RecipeContext();
             _dbContext.Ingredients.Load();
         }
 
@@ -29,10 +29,17 @@ namespace CocktailApp.Repository
            return _dbContext.Ingredients.Count();
         }
 
-        public void Add(Model.Ingredient ingredient)
+        public void AddIngredient(Model.Ingredient ingredient)
         {
-            _dbContext.Ingredients.Add(ingredient);
-            _dbContext.SaveChanges();
+            //check that it's not already in DB
+            var query = from Ingredient in _dbContext.Ingredients
+                        where ingredient.Name == Ingredient.Name
+                        select Ingredient;
+            if(query.ToList<Ingredient>().Count == 0)
+            {
+                _dbContext.Ingredients.Add(ingredient);
+                _dbContext.SaveChanges();
+            }          
         }
 
         public void Delete(Model.Ingredient recipe)

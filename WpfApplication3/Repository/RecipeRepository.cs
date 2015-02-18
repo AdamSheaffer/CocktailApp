@@ -11,17 +11,17 @@ namespace CocktailApp.Repository
     public class RecipeRepository : IRecipeRepository
     {
         private RecipeContext _dbContext;
-        private IngredientContext _ingdbContext;
+        private RecipeContext _ingdbContext;
 
         public RecipeRepository() 
         {
             _dbContext = new RecipeContext();
             _dbContext.Recipes.Load();
-            _ingdbContext = new IngredientContext();
+            _ingdbContext = new RecipeContext();
             _ingdbContext.Ingredients.Load();
         }
 
-        public ObservableCollection<Model.Recipe> Context()
+        public ObservableCollection<Model.Recipe> RecipeContext()
         {
             return _dbContext.Recipes.Local;
         }
@@ -79,5 +79,6 @@ namespace CocktailApp.Repository
         {
             throw new NotImplementedException();
         }
+
     }
 }

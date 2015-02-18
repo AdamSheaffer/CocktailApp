@@ -24,19 +24,19 @@ namespace CocktailApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public RecipeRepository recRepo = new RecipeRepository();
+        public RecipeRepository Repo = new RecipeRepository();
         public IngredientRepository IngRepo = new IngredientRepository();
         public DBPopulator DbPopulator = new DBPopulator();
 
 
         public MainWindow()
         {
-            if (recRepo.RecipeCount() < 1)
+            if (Repo.RecipeCount() < 1)
             {
                 DbPopulator.Populate();
             }
             InitializeComponent();
-            AllRecipesList.DataContext = recRepo.Context();
+            AllRecipesList.DataContext = Repo.RecipeContext();
             AllFruits.DataContext = IngRepo.IngType("Fruit");
             AllMixers.DataContext = IngRepo.IngType("Mixer");
             AllBitters.DataContext = IngRepo.IngType("Bitters");
