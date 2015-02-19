@@ -10,6 +10,6 @@ namespace CocktailApp
 {
     public class RecipeIngredientContext : DbContext
     {
-        public DbSet<RecipeIngredient> RecipeIngredients { get; set; }
+        //public DbSet<RecipeIngredient> RecipeIngredients { get; set; }
     }
 }

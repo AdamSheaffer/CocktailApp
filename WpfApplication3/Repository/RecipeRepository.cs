@@ -5,20 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Collections.ObjectModel;
+using CocktailApp.Model;
 
 namespace CocktailApp.Repository
 {
-    public class RecipeRepository : IRecipeRepository
+    public class RecipeRepository
     {
         private RecipeContext _dbContext;
-        private RecipeContext _ingdbContext;
 
         public RecipeRepository() 
         {
             _dbContext = new RecipeContext();
+            _dbContext.Ingredients.Load();
+            _dbContext.RecipeIngredients.Load();
             _dbContext.Recipes.Load();
-            _ingdbContext = new RecipeContext();
-            _ingdbContext.Ingredients.Load();
         }
 
         public ObservableCollection<Model.Recipe> RecipeContext()
@@ -31,16 +31,15 @@ namespace CocktailApp.Repository
             return _dbContext.Recipes.Count<Model.Recipe>();
         }
 
-        public void Add(Model.Recipe recipe)
+        public void AddRecipe(Model.Recipe recipe)
         {     
             foreach(Model.Ingredient ingredient in recipe.IngredientList ) 
             {
-                _ingdbContext.Ingredients.Add(ingredient);
+                _dbContext.Ingredients.Add(ingredient);
             }
 
             _dbContext.Recipes.Add(recipe);
             _dbContext.SaveChanges();
-            _ingdbContext.SaveChanges();
         }
 
         public void Delete(Model.Recipe recipe)

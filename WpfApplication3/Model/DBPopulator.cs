@@ -18,9 +18,9 @@ namespace CocktailApp.Model
 
         public void Populate() 
         {
-            recRepo.Add(GinSlush());
-            recRepo.Add(PerfectMartini());
-            recRepo.Add(TomCollins());
+            recRepo.AddRecipe(GinSlush());
+            recRepo.AddRecipe(PerfectMartini());
+            recRepo.AddRecipe(TomCollins());
         }
 
         public Recipe GinSlush()

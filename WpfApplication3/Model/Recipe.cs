@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Collections.ObjectModel;
 using CocktailApp;
 using CocktailApp.Repository;
 
@@ -12,8 +13,9 @@ namespace CocktailApp.Model
 
     public class Recipe
     {
-        private RecipeContext Repo = new RecipeContext();
-        
+        private IngredientRepository IngRepo = new IngredientRepository();
+        private RecipeIngredientRepository RecIngRepo = new RecipeIngredientRepository();
+  
         public int RecipeId { get; set; }
         public Ingredient[] IngredientList { get; set; }
         public string Instructions { get; set; }
@@ -24,9 +26,12 @@ namespace CocktailApp.Model
             this.IngredientList = ingredientList;
             this.Instructions = instructions;
             this.Name = name;
+
             foreach (Ingredient ingredient in ingredientList)
             {
-                Repo.Ingredients.Add(ingredient);    
+                IngRepo.AddIngredient(ingredient);
+                RecipeIngredient recipeIngredient = new RecipeIngredient(this, ingredient);
+                RecIngRepo.Add(recipeIngredient);
             }
         }
         public Recipe() { }

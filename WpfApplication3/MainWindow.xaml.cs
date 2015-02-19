@@ -28,13 +28,12 @@ namespace CocktailApp
         public IngredientRepository IngRepo = new IngredientRepository();
         public DBPopulator DbPopulator = new DBPopulator();
 
-
         public MainWindow()
         {
             if (Repo.RecipeCount() < 1)
             {
                 DbPopulator.Populate();
-            }
+             }
             InitializeComponent();
             AllRecipesList.DataContext = Repo.RecipeContext();
             AllFruits.DataContext = IngRepo.IngType("Fruit");
