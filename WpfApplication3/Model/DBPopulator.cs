@@ -21,6 +21,7 @@ namespace CocktailApp.Model
             recRepo.AddRecipe(GinSlush());
             recRepo.AddRecipe(PerfectMartini());
             recRepo.AddRecipe(TomCollins());
+            recRepo.AddRecipe(StrawberryCocktail());
         }
 
         public Recipe GinSlush()
@@ -55,11 +56,25 @@ namespace CocktailApp.Model
                 new Ingredient("Angostura", "Bitters"),
                 new Ingredient("Club Soda", "Mixer"),
                 new Ingredient("Lemon", "Fruit"),
-                 new Ingredient("Cherry", "Fruit")
+                new Ingredient("Cherry", "Fruit")
             };
             string instructions = "Fill a cocktail shaker with ice. Pour in 2 ounces of gin, 2 ounces oflemon juice, 1 ounce of simple syrup and a dash of bitters. Cover and shake until the outside of the container is frosty, about 15 seconds. Strain into a highball glass full of ice. Top off with 1/4 cup of cold club soda and garnish with a lemon slice and cherry.";
             Recipe TomCollins = new Recipe("Tom Collins", ings, instructions);
             return TomCollins;
+        }
+
+        public Recipe StrawberryCocktail()
+        {
+            Ingredient[] ings = {
+                new Ingredient("Strawberry", "Fruit"),
+                new Ingredient("Basil Leaves", "Mixer"),
+                new Ingredient("White Sugar", "Mixer"),
+                new Ingredient("Lemon Juice", "Mixer"),
+                new Ingredient("Club Soda", "Mixer")
+            };
+            string instructions = "Place 1 strawberry, 2 basil leaves, and 2 teaspoons of sugar into a cocktail shaker, and mash well with a cocktail muddler. Add ice to the cocktail shaker and also into a tall glass. Pour 2 ounces of gin and 1 ounce of lemon juice, cover, and shake until the outside of the shaker has frosted. Strain into the chilled glass over the ice, top with 3 ounces of club soda, and stir to serve.";
+            Recipe StrawberryCocktail = new Recipe("Strawberry Cocktail", ings, instructions);
+            return StrawberryCocktail;
         }
     }
 }

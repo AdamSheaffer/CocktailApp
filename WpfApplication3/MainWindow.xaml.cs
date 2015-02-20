@@ -33,14 +33,14 @@ namespace CocktailApp
             if (Repo.RecipeCount() < 1)
             {
                 DbPopulator.Populate();
-             }
+            }
             InitializeComponent();
             AllRecipesList.DataContext = Repo.RecipeContext();
             AllFruits.DataContext = IngRepo.IngType("Fruit");
             AllMixers.DataContext = IngRepo.IngType("Mixer");
             AllBitters.DataContext = IngRepo.IngType("Bitters");
             AllLiqueurs.DataContext = IngRepo.IngType("Liqueur");
-
+            //MyLiqueurs.DataContext = 
             
         }
 
