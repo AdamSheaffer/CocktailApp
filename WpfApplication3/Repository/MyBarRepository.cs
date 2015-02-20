@@ -25,12 +25,13 @@ namespace CocktailApp.Repository
             _dbContext.SaveChanges();
         }
 
-        public IEnumerable<Ingredient> GetByType(string ingredientType)
+        public ObservableCollection<Ingredient> GetByType(string ingredientType)
         {
             var query = from Ingredient in _dbContext.MyIngredients
                         where ingredientType == Ingredient.IngredientType
                         select Ingredient;
-            return query.ToList<Ingredient>();
+            var ings = new ObservableCollection<Ingredient>(query.ToList<Ingredient>());
+            return ings;
         }
     }
 }

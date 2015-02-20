@@ -26,6 +26,7 @@ namespace CocktailApp
     {
         public RecipeRepository Repo = new RecipeRepository();
         public IngredientRepository IngRepo = new IngredientRepository();
+        public MyBarRepository MyBarRepo = new MyBarRepository();
         public DBPopulator DbPopulator = new DBPopulator();
 
         public MainWindow()
@@ -40,15 +41,19 @@ namespace CocktailApp
             AllMixers.DataContext = IngRepo.IngType("Mixer");
             AllBitters.DataContext = IngRepo.IngType("Bitters");
             AllLiqueurs.DataContext = IngRepo.IngType("Liqueur");
-            //MyLiqueurs.DataContext = 
-            
+            MyFruits.DataContext = MyBarRepo.GetByType("Fruit");
+            MyMixers.DataContext = MyBarRepo.GetByType("Mixer");
+            MyBitters.DataContext = MyBarRepo.GetByType("Bitters");
+            MyLiqueurs.DataContext = MyBarRepo.GetByType("Liqueur");
         }
 
-        private void AddToMyLiqueurs(object sender, MouseButtonEventArgs e)
+        private void AddToMyBar(object sender, MouseButtonEventArgs e)
         {
             TextBlock myTextBlock = sender as TextBlock;
-            string ingredientName = myTextBlock.Text;
-            
+            Ingredient ingredient = myTextBlock.DataContext as Ingredient;
+            // I may want to delete the ingredient clicked from the total list
+                // when it gets added to the bar.
+            MyBarRepo.Add(ingredient);
         }
 
        
