@@ -38,8 +38,7 @@ namespace CocktailApp.Model
                     IngRepo.AddIngredient(ingredient);
                     RecipeIngredient recipeIngredient = new RecipeIngredient(this, ingredient);
                     RecIngRepo.Add(recipeIngredient);
-                }
-                
+                }            
             }
         }
         public Recipe() { }

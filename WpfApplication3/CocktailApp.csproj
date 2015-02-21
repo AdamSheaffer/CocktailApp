@@ -58,15 +58,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="IngredientContext.cs" />
     <Compile Include="Model\DBPopulator.cs" />
     <Compile Include="Model\RecipeIngredient.cs" />
     <Compile Include="MyBarContext.cs" />
+    <Compile Include="MyFavoritesContext.cs" />
     <Compile Include="RecipeContext.cs" />
-    <Compile Include="RecipeIngredientContext.cs" />
     <Compile Include="Repository\IngredientRepository.cs" />
     <Compile Include="Repository\IRecipeRepository.cs" />
     <Compile Include="Repository\MyBarRepository.cs" />
+    <Compile Include="Repository\MyFavoritesRepository.cs" />
     <Compile Include="Repository\RecipeIngredientRepository.cs" />
     <Compile Include="Repository\RecipeRepository.cs" />
     <Page Include="MainWindow.xaml">

@@ -27,6 +27,7 @@ namespace CocktailApp
         public RecipeRepository Repo = new RecipeRepository();
         public IngredientRepository IngRepo = new IngredientRepository();
         public MyBarRepository MyBarRepo = new MyBarRepository();
+        public MyFavoritesRepository MyFavoritesRepo = new MyFavoritesRepository();
         public DBPopulator DbPopulator = new DBPopulator();
 
         public MainWindow()
@@ -60,6 +61,17 @@ namespace CocktailApp
             MyLiqueurs.DataContext = MyBarRepo.GetByType("Liqueur");
         }
 
+        private void ViewOrAddTOMyBar(object sender, RoutedEventArgs e)
+        {
+            Button buttonClicked = e.Source as Button;
+            string buttonContent = buttonClicked.Content.ToString();
+
+        }
+
+        private void AddToFavorites(Recipe recipe)
+        {
+
+        }
        
     }
 }
