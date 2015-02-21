@@ -74,14 +74,14 @@ namespace CocktailApp.Repository
             return query.ToList<Model.Ingredient>();
         }
 
-        public IEnumerable<Model.Ingredient> IngType(string ingredientType)
+        public ObservableCollection<Model.Ingredient> IngType(string ingredientType)
         {
             var query = from Ingredient in _dbContext.Ingredients
                         where Ingredient.IngredientType == ingredientType
                         select Ingredient;
-            return query.ToList<Model.Ingredient>();                      
+            var ings = new ObservableCollection<Ingredient>(query.ToList<Ingredient>());
+            return ings;   
         }
-
-        
+     
     }
 }

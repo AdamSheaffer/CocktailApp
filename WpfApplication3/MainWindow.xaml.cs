@@ -54,6 +54,10 @@ namespace CocktailApp
             // I may want to delete the ingredient clicked from the total list
                 // when it gets added to the bar.
             MyBarRepo.Add(ingredient);
+            MyFruits.DataContext = MyBarRepo.GetByType("Fruit");
+            MyMixers.DataContext = MyBarRepo.GetByType("Mixer");
+            MyBitters.DataContext = MyBarRepo.GetByType("Bitters");
+            MyLiqueurs.DataContext = MyBarRepo.GetByType("Liqueur");
         }
 
        
