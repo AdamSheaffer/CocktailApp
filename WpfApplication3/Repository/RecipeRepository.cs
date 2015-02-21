@@ -64,9 +64,12 @@ namespace CocktailApp.Repository
             return query.ToList<Model.Recipe>();
         }
 
-        public Model.Recipe GetByName()
+        public Model.Recipe GetByName(string name)
         {
-            throw new NotImplementedException();
+            var query = from Recipe in _dbContext.Recipes
+                        where name == Recipe.Name
+                        select Recipe;
+            return query.First<Recipe>();
         }
 
         public Model.Recipe GetById()

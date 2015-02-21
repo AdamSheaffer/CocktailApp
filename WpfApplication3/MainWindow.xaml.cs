@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 using System.Data.Entity;
 using CocktailApp.Repository;
 using CocktailApp.Model;
@@ -46,6 +47,7 @@ namespace CocktailApp
             MyMixers.DataContext = MyBarRepo.GetByType("Mixer");
             MyBitters.DataContext = MyBarRepo.GetByType("Bitters");
             MyLiqueurs.DataContext = MyBarRepo.GetByType("Liqueur");
+            MyFavorites.DataContext = MyFavoritesRepo.RecipeContext();
         }
 
         private void AddToMyBar(object sender, MouseButtonEventArgs e)
@@ -65,12 +67,22 @@ namespace CocktailApp
         {
             Button buttonClicked = e.Source as Button;
             string buttonContent = buttonClicked.Content.ToString();
+            TextBlock recipeTextBlock = sender as TextBlock;
+            string recipeName = recipeTextBlock.Text;
+            Recipe selectedRecipe = Repo.GetByName(recipeName);
+
+            if(buttonContent == "Favorite") 
+            {
+                MyFavoritesRepo.AddToFavorites(selectedRecipe);
+                MyFavorites.DataContext = MyFavoritesRepo.RecipeContext();
+            }
 
         }
 
-        private void AddToFavorites(Recipe recipe)
+        private void CheckPossibleDrinks(object sender, RoutedEventArgs e)
         {
-
+            PossibleDrinks drinkResults = new PossibleDrinks();
+            drinkResults.Show();
         }
        
     }

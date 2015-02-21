@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Collections.ObjectModel;
 
 namespace CocktailApp.Repository
 {
@@ -15,6 +16,11 @@ namespace CocktailApp.Repository
         {
             _dbContext = new MyFavoritesContext();
             _dbContext.MyFavorites.Load();
+        }
+
+        public ObservableCollection<Model.Recipe> RecipeContext()
+        {
+            return _dbContext.MyFavorites.Local;
         }
 
         public void AddToFavorites(Model.Recipe recipe)

@@ -107,8 +107,14 @@
             </StackPanel>
             <StackPanel Name="FavoritesWrap" Background="AntiqueWhite" HorizontalAlignment="Left" VerticalAlignment="Top" Height="465" Width="250" Margin="15,0,0,0">
                 <TextBlock TextAlignment="Center" Width="250" Height="25">My Favorites</TextBlock>
-                <ListBox Height="300" Width="250" Margin="0,0,0,10"></ListBox>
-                <Button Content="What Can I Make?" Height="60" Width="250" Margin="0,0,0,10"/>
+                <ListBox Name="MyFavorites" Height="300" Width="250" Margin="0,0,0,10" ItemsSource="{Binding}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Button Content="What Can I Make?" Height="60" Width="250" Margin="0,0,0,10" Click="CheckPossibleDrinks"/>
                 <Button Content="Empty My Bar" Height="60" Width="250" />
             </StackPanel>
         </StackPanel>
