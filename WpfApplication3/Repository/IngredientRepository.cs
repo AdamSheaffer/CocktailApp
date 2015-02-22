@@ -39,7 +39,7 @@ namespace CocktailApp.Repository
             {
                 _dbContext.Ingredients.Add(ingredient);
                 _dbContext.SaveChanges();
-            }          
+            }
         }
 
         public void Delete(Model.Ingredient recipe)
@@ -81,6 +81,14 @@ namespace CocktailApp.Repository
                         select Ingredient;
             var ings = new ObservableCollection<Ingredient>(query.ToList<Ingredient>());
             return ings;   
+        }
+
+        public int GetId(string ingredientName)
+        {
+            var query = from Ingredient in _dbContext.Ingredients
+                        where Ingredient.Name == ingredientName
+                        select Ingredient;
+            return query.First<Ingredient>().IngredientId;
         }
      
     }

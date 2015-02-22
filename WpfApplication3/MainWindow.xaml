@@ -33,7 +33,7 @@
                         <TextBlock TextAlignment="Center" Width="125" Text="Fruits" Margin="0,20,0,0"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <ListBox Name="AllLiqueurs" Width="125" Margin="0,50,0,0" ItemsSource="{Binding}">
+                        <ListBox Name="AllLiqueurs" Width="125" Height="200" Margin="0,50,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Name}" MouseUp="AddToMyBar"/>
@@ -47,14 +47,14 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                        <ListBox Name="AllBitters" Width="125" Margin="0,50,0,0" ItemsSource="{Binding}">
+                        <ListBox Name="AllBitters" Width="125" Height="200" Margin="0,50,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Name}" MouseUp="AddToMyBar"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                        <ListBox Name="AllFruits" Width="125" Margin="0,50,0,0" ItemsSource="{Binding}">
+                        <ListBox Name="AllFruits" Width="125" Height="200" Margin="0,50,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Name}" MouseUp="AddToMyBar"/>
@@ -73,28 +73,28 @@
                         <TextBlock TextAlignment="Center" Width="125" Text="Fruits" Margin="0,20,0,0"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <ListBox Name="MyLiqueurs" Width="125" Margin="0,50,0,0" ItemsSource="{Binding}">
+                        <ListBox Name="MyLiqueurs" Width="125" Height="200"  Margin="0,50,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Name}"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                        <ListBox Name="MyMixers" Width="125" Margin="0,50,0,0" ItemsSource="{Binding}">
+                        <ListBox Name="MyMixers" Width="125" Height="200" Margin="0,50,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Name}"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                        <ListBox Name="MyBitters" Width="125" Margin="0,50,0,0" ItemsSource="{Binding}">
+                        <ListBox Name="MyBitters" Width="125" Height="200" Margin="0,50,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Name}"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                        <ListBox Name="MyFruits" Width="125" Margin="0,50,0,0" ItemsSource="{Binding}">
+                        <ListBox Name="MyFruits" Width="125" Height="200" Margin="0,50,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Name}"/>

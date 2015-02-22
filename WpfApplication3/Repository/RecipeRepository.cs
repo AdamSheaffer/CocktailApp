@@ -21,17 +21,17 @@ namespace CocktailApp.Repository
             _dbContext.Recipes.Load();
         }
 
-        public ObservableCollection<Model.Recipe> RecipeContext()
+        public ObservableCollection<Recipe> RecipeContext()
         {
             return _dbContext.Recipes.Local;
         }
 
         public int RecipeCount()
         {
-            return _dbContext.Recipes.Count<Model.Recipe>();
+            return _dbContext.Recipes.Count<Recipe>();
         }
 
-        public void AddRecipe(Model.Recipe recipe)
+        public void AddRecipe(Recipe recipe)
         {     
             foreach(Model.Ingredient ingredient in recipe.IngredientList ) 
             {
@@ -42,12 +42,12 @@ namespace CocktailApp.Repository
             _dbContext.SaveChanges();
         }
 
-        public void Delete(Model.Recipe recipe)
+        public void Delete(Recipe recipe)
         {
             var query = from Recipe in _dbContext.Recipes
                         where Recipe.RecipeId == recipe.RecipeId
                         select Recipe;
-            Model.Recipe recipeToDelete = query.First<Model.Recipe>();
+            Recipe recipeToDelete = query.First<Recipe>();
             _dbContext.Recipes.Remove(recipeToDelete);
         }
 
@@ -57,14 +57,14 @@ namespace CocktailApp.Repository
             
         }
 
-        public IEnumerable<Model.Recipe> All()
+        public IEnumerable<Recipe> All()
         {
             var query = from Recipe in _dbContext.Recipes
                         select Recipe;
-            return query.ToList<Model.Recipe>();
+            return query.ToList<Recipe>();
         }
 
-        public Model.Recipe GetByName(string name)
+        public Recipe GetByName(string name)
         {
             var query = from Recipe in _dbContext.Recipes
                         where name == Recipe.Name
@@ -72,12 +72,20 @@ namespace CocktailApp.Repository
             return query.First<Recipe>();
         }
 
-        public Model.Recipe GetById()
+        public int GetId(string name) 
+        {
+            var query = from Recipe in _dbContext.Recipes
+                        where name == Recipe.Name
+                        select Recipe;
+            return query.First<Recipe>().RecipeId;
+        }
+
+        public Recipe GetById()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Model.Recipe> GetPossibleRecipes(IEnumerable<Model.Ingredient> ingredientList)
+        public IEnumerable<Recipe> GetPossibleRecipes(IEnumerable<Ingredient> ingredientList)
         {
             throw new NotImplementedException();
         }

@@ -76,6 +76,7 @@ namespace CocktailApp
                 MyFavoritesRepo.AddToFavorites(selectedRecipe);
                 MyFavorites.DataContext = MyFavoritesRepo.RecipeContext();
             }
+            // if ( view ) {Do something}
 
         }
 

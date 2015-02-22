@@ -9,9 +9,11 @@ using CocktailApp.Model;
 
 namespace CocktailApp.Repository
 {
-    class RecipeIngredientRepository
+    public class RecipeIngredientRepository
     {
         private RecipeContext _dbContext;
+        private IngredientRepository IngRepo = new IngredientRepository();
+        //private RecipeRepository RecRepo = new RecipeRepository();
 
         public RecipeIngredientRepository()
         {
@@ -26,8 +28,16 @@ namespace CocktailApp.Repository
 
         public void Add(Model.RecipeIngredient recipeIngredient)
         {
-            _dbContext.RecipeIngredients.Add(recipeIngredient);
-            _dbContext.SaveChanges();
+            //check that it's not already in DB
+            var query = from RecipeIngredient in _dbContext.RecipeIngredients                          where recipeIngredient.Recipe_Id == RecipeIngredient.Recipe_Id
+                        && recipeIngredient.Ingredient_Id == RecipeIngredient.Ingredient_Id
+                        select RecipeIngredient;
+            if (query.ToList<RecipeIngredient>().Count == 0)
+            {
+                _dbContext.RecipeIngredients.Add(recipeIngredient);
+                _dbContext.SaveChanges();
+            }
         }
+
     }
 }

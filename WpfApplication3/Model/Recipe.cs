@@ -31,13 +31,11 @@ namespace CocktailApp.Model
 
             IEnumerable<Ingredient> AllIngredients = IngRepo.All();
 
-            foreach (Ingredient ingredient in ingredientList)
+            foreach (Ingredient ingredient in IngredientList)
             {
-                if ( AllIngredients.Contains<Ingredient>(ingredient) )
+                if ( !AllIngredients.Contains<Ingredient>(ingredient) )
                 {
                     IngRepo.AddIngredient(ingredient);
-                    RecipeIngredient recipeIngredient = new RecipeIngredient(this, ingredient);
-                    RecIngRepo.Add(recipeIngredient);
                 }            
             }
         }

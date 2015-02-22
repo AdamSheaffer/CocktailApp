@@ -12,7 +12,8 @@ namespace CocktailApp.Model
     public class DBPopulator
     {
         public RecipeRepository recRepo = new RecipeRepository();
-        public IngredientRepository IngRepo = new IngredientRepository();
+        public IngredientRepository ingRepo = new IngredientRepository();
+        public RecipeIngredientRepository recIngRepo = new RecipeIngredientRepository();
 
         public DBPopulator() { }
 
@@ -22,6 +23,17 @@ namespace CocktailApp.Model
             recRepo.AddRecipe(PerfectMartini());
             recRepo.AddRecipe(TomCollins());
             recRepo.AddRecipe(StrawberryCocktail());
+        }
+
+        private void AddAllRecIngs(Recipe recipe)
+        {
+            foreach (Ingredient ingredient in recipe.IngredientList)
+            {
+                int recipeId = recRepo.GetId(recipe.Name);
+                int ingredientId = ingRepo.GetId(ingredient.Name);
+                RecipeIngredient recipeIngredient = new RecipeIngredient(recipeId, ingredientId);
+                recIngRepo.Add(recipeIngredient);
+            }
         }
 
         public Recipe GinSlush()
@@ -34,6 +46,7 @@ namespace CocktailApp.Model
             };
             string instructions = "In a saucepan, combine 9 cups of water and 2 cups of sugar. Bring to a boil and let boil for 15 minutes. Remove from heat and allow to cool. Stir in 1 can(12 ounces) orange juice concentrate, 1 can of lemonade concentrate and 2 cups of gin. Pour into a plastic container and freeze overnight. To serve, scoop 1/2 cup slush into a glass and top with lemon-lime soda.";
             Recipe GinSlush = new Recipe("Gin Slush", ings, instructions);
+            AddAllRecIngs(GinSlush);
             return GinSlush;
         }
 
@@ -45,6 +58,7 @@ namespace CocktailApp.Model
             };
             string instructions = "Fill a cocktail shaker with ice. Pour in 1/2 fluid ounce vermouth, followed closely by 4 fluid ounces of gin. Shake while counting to 30. Divide into 2 cocktail glasses. Garnish with 1 olive each.";
             Recipe PerfectMartini = new Recipe("Perfect Martini", ings, instructions);
+            AddAllRecIngs(PerfectMartini);
             return PerfectMartini;
         }
 
@@ -60,6 +74,7 @@ namespace CocktailApp.Model
             };
             string instructions = "Fill a cocktail shaker with ice. Pour in 2 ounces of gin, 2 ounces oflemon juice, 1 ounce of simple syrup and a dash of bitters. Cover and shake until the outside of the container is frosty, about 15 seconds. Strain into a highball glass full of ice. Top off with 1/4 cup of cold club soda and garnish with a lemon slice and cherry.";
             Recipe TomCollins = new Recipe("Tom Collins", ings, instructions);
+            AddAllRecIngs(TomCollins);
             return TomCollins;
         }
 
@@ -74,7 +89,33 @@ namespace CocktailApp.Model
             };
             string instructions = "Place 1 strawberry, 2 basil leaves, and 2 teaspoons of sugar into a cocktail shaker, and mash well with a cocktail muddler. Add ice to the cocktail shaker and also into a tall glass. Pour 2 ounces of gin and 1 ounce of lemon juice, cover, and shake until the outside of the shaker has frosted. Strain into the chilled glass over the ice, top with 3 ounces of club soda, and stir to serve.";
             Recipe StrawberryCocktail = new Recipe("Strawberry Cocktail", ings, instructions);
+            AddAllRecIngs(StrawberryCocktail);
             return StrawberryCocktail;
+        }
+
+        public Recipe Fitzgerald()
+        {
+            Ingredient[] ings = {
+                new Ingredient("Lemon Juice", "Mixer"),
+                new Ingredient("Simple Syrup", "Mixer"),
+                new Ingredient("Angostura", "Bitters")
+            };
+            string instructions = "Combine 2 ounces of gin, .75 ounces of Simple Syrup, .75 ounces of Lemon Juice, and 2 dashes of Angostura Bitters in a shaker over ice. Shake and strain into a cocktail glass.";
+            Recipe Fitzgerald = new Recipe("Fitzgerald", ings, instructions);
+            AddAllRecIngs(Fitzgerald);
+            return Fitzgerald;
+        }
+
+        public Recipe GinSour()
+        {
+            Ingredient[] ings = {
+                new Ingredient("Lemon Juice", "Mixer"),
+                new Ingredient("Simple Syrup", "Mixer"),
+            };
+            string instructions = "Combine 2 ounces of gin, .75 ounces of Simple Syrup, and .75 ounces of Lemon Juice in a shaker over ice. Shake and strain into a cocktail glass.";
+            Recipe GinSour = new Recipe("Gin Sour", ings, instructions);
+            AddAllRecIngs(GinSour);
+            return GinSour;
         }
     }
 }

@@ -19,10 +19,10 @@ namespace CocktailApp.Model
 
         public RecipeIngredient() { }
 
-        public RecipeIngredient(Model.Recipe recipe, Model.Ingredient ingredient)
+        public RecipeIngredient(int recipeId, int ingredientId)
         {
-            this.Recipe_Id = recipe.RecipeId;
-            this.Ingredient_Id = ingredient.IngredientId;
+            this.Recipe_Id = recipeId;
+            this.Ingredient_Id = ingredientId;
         }
     }
 }
