@@ -77,7 +77,8 @@ namespace CocktailApp.Repository
             var query = from Recipe in _dbContext.Recipes
                         where name == Recipe.Name
                         select Recipe;
-            return query.First<Recipe>().RecipeId;
+            Recipe recipe = query.First<Recipe>();
+            return recipe.RecipeId;
         }
 
         public Recipe GetById()
