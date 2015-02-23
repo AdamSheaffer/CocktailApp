@@ -88,9 +88,12 @@ namespace CocktailApp.Repository
             return recipe.RecipeId;
         }
 
-        public Recipe GetById()
+        public Recipe GetById(int id)
         {
-            throw new NotImplementedException();
+            var query = from Recipe in _dbContext.Recipes
+                        where id == Recipe.RecipeId
+                        select Recipe;
+            return query.First<Recipe>();
         }
 
         public IEnumerable<Recipe> GetPossibleRecipes(IEnumerable<Ingredient> ingredientList)

@@ -3,6 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="PossibleDrinks" Height="300" Width="300">
     <Grid>
-        
+        <ListBox Name="DrinkResults" ItemsSource="{Binding}" Height="300" Width="300">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>          
+        </ListBox>
     </Grid>
 </Window>

@@ -48,7 +48,7 @@ namespace CocktailApp.Repository
             return !necessaryIngredientsId.Except(myIngredientIds).Any();
         }
 
-        public List<int> FindPossibleDrinkIds(IEnumerable<Ingredient> ingredientList) 
+        public List<int> FindPossibleDrinkIds() 
         {
             IEnumerable<int> allRecipeIds = GetAllRecipeIds();
             IEnumerable<int> myIngredients = MyBarRepo.AllIds();
@@ -62,5 +62,6 @@ namespace CocktailApp.Repository
             }
             return possibleDrinkIds;
         }
+
     }
 }
