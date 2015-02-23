@@ -33,5 +33,19 @@ namespace CocktailApp.Repository
             var ings = new ObservableCollection<Ingredient>(query.ToList<Ingredient>());
             return ings;
         }
+
+        public IEnumerable<Ingredient> All()
+        {
+            var query = from Ingredient in _dbContext.MyIngredients
+                        select Ingredient;
+            return query.ToList<Ingredient>();
+        }
+
+        public IEnumerable<int> AllIds()
+        {
+            var query = from Ingredient in _dbContext.MyIngredients
+                        select Ingredient.IngredientId;
+            return query.ToList<int>();
+        }
     }
 }

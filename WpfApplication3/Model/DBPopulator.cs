@@ -23,12 +23,12 @@ namespace CocktailApp.Model
             PinkestGin();
             GinSlush();
             PerfectMartini();
-            TomCollins();
-            StrawberryCocktail();
-            Fitzgerald();
-            GinSour();
-            Aviation();
-            Casino();
+            //TomCollins();
+            //StrawberryCocktail();
+            //Fitzgerald();
+            //GinSour();
+            //Aviation();
+            //Casino();
         }
 
         private void AddAllRecIngs(Recipe recipe)
@@ -42,6 +42,13 @@ namespace CocktailApp.Model
             }
         }
 
+        private void AddToDatabase(Recipe recipe)
+        {
+            recRepo.AddRecipe(recipe);
+            ingRepo.AddIngredientsFromRecipe(recipe);
+            AddAllRecIngs(recipe);
+        }
+
         public void Aviatrix()
         {
             Ingredient[] ings = {
@@ -52,8 +59,7 @@ namespace CocktailApp.Model
             };
             string instructions = "Over ice, stir 2 ounces of gin, 1 ounce of Lillet Blanc, 1 teaspoon Creme de Violette, and 2 dashes of Lemon Bitters. Add Lemon twist for garnish.";
             Recipe Aviatrix = new Recipe("Aviatrix", ings, instructions);
-            recRepo.AddRecipe(Aviatrix);
-            AddAllRecIngs(Aviatrix);
+            AddToDatabase(Aviatrix);
         }
 
         public void PinkestGin()
@@ -66,8 +72,7 @@ namespace CocktailApp.Model
             };
             string instructions = "Fill a cocktail shaker with ice. Add 2 ounces of gin, .5 ounces of grapefruit juice, .25 ounces of lemon juice, 1 ounces quince syrup, and 2 dashes of bitters. Shake until well chilled, about 20 seconds. Strain into a coupe glass.";
             Recipe PinkestGin = new Recipe("Pinkest Gin", ings, instructions);
-            recRepo.AddRecipe(PinkestGin);
-            AddAllRecIngs(PinkestGin);
+            AddToDatabase(PinkestGin);
         }
 
         public void GinSlush()
@@ -80,8 +85,7 @@ namespace CocktailApp.Model
             };
             string instructions = "In a saucepan, combine 9 cups of water and 2 cups of sugar. Bring to a boil and let boil for 15 minutes. Remove from heat and allow to cool. Stir in 1 can(12 ounces) orange juice concentrate, 1 can of lemonade concentrate and 2 cups of gin. Pour into a plastic container and freeze overnight. To serve, scoop 1/2 cup slush into a glass and top with lemon-lime soda.";
             Recipe GinSlush = new Recipe("Gin Slush", ings, instructions);
-            recRepo.AddRecipe(GinSlush);
-            AddAllRecIngs(GinSlush);
+            AddToDatabase(GinSlush);
         }
 
         public void PerfectMartini() 
@@ -92,8 +96,7 @@ namespace CocktailApp.Model
             };
             string instructions = "Fill a cocktail shaker with ice. Pour in 1/2 fluid ounce vermouth, followed closely by 4 fluid ounces of gin. Shake while counting to 30. Divide into 2 cocktail glasses. Garnish with 1 olive each.";
             Recipe PerfectMartini = new Recipe("Perfect Martini", ings, instructions);
-            recRepo.AddRecipe(PerfectMartini);
-            AddAllRecIngs(PerfectMartini);
+            AddToDatabase(PerfectMartini);
         }
 
         public void TomCollins()

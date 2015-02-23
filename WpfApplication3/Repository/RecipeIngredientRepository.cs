@@ -39,5 +39,11 @@ namespace CocktailApp.Repository
             }
         }
 
+        public IEnumerable<RecipeIngredient> All()
+        {
+            var query = from RecipeIngredient in _dbContext.RecipeIngredients
+                        select RecipeIngredient;
+            return query.ToList<RecipeIngredient>();
+        }
     }
 }

@@ -70,6 +70,7 @@
     <Compile Include="Repository\IRecipeRepository.cs" />
     <Compile Include="Repository\MyBarRepository.cs" />
     <Compile Include="Repository\MyFavoritesRepository.cs" />
+    <Compile Include="Repository\PossibleDrinksRepository.cs" />
     <Compile Include="Repository\RecipeIngredientRepository.cs" />
     <Compile Include="Repository\RecipeRepository.cs" />
     <Page Include="MainWindow.xaml">

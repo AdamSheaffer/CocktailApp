@@ -14,7 +14,6 @@ namespace CocktailApp.Model
     public class Recipe
     {
         private IngredientRepository IngRepo = new IngredientRepository();
-        private RecipeIngredientRepository RecIngRepo = new RecipeIngredientRepository();
   
         public int RecipeId { get; set; }
         public Ingredient[] IngredientList { get; set; }
@@ -27,17 +26,26 @@ namespace CocktailApp.Model
             this.Instructions = instructions;
             this.Name = name;
 
-            //I want to efficiently check if the ingredients in the new recipe are already in the database. If any ingredients are already in the db, they should not be added. I want to do this by touching the database the least.
+            //I want to efficiently check if the ingredients in the new recipe are already in the database. If any ingredients are already in the db, they should not be added. Current implementation is O(n^).
 
-            IEnumerable<Ingredient> AllIngredients = IngRepo.All();
+            //IEnumerable<Ingredient> AllIngredients = IngRepo.All();
+            //bool IngredientExists;
 
-            foreach (Ingredient ingredient in IngredientList)
-            {
-                if ( !AllIngredients.Contains<Ingredient>(ingredient) )
-                {
-                    IngRepo.AddIngredient(ingredient);
-                }            
-            }
+            //foreach (Ingredient ingredient in IngredientList)
+            //{
+            //    IngredientExists = false;
+            //    foreach(Ingredient dbIngredients in AllIngredients)
+            //    if ( ingredient.Name == dbIngredients.Name && ingredient.IngredientType == dbIngredients.IngredientType)
+            //    {
+            //        IngredientExists = true;
+            //        break;
+            //    }
+            //    if (!IngredientExists)
+            //    {
+            //        IngRepo.AddIngredient(ingredient);
+            //    }
+                    
+            //}
         }
         public Recipe() { }
     }

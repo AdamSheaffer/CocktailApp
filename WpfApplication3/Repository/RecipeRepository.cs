@@ -32,14 +32,21 @@ namespace CocktailApp.Repository
         }
 
         public void AddRecipe(Recipe recipe)
-        {     
-            foreach(Model.Ingredient ingredient in recipe.IngredientList ) 
+        {
+            var query = from Recipe in _dbContext.Recipes
+                        where recipe.Name == Recipe.Name
+                        select Recipe;
+            if( query.ToList<Recipe>().Count == 0)
             {
-                _dbContext.Ingredients.Add(ingredient);
-            }
 
-            _dbContext.Recipes.Add(recipe);
-            _dbContext.SaveChanges();
+                foreach(Model.Ingredient ingredient in recipe.IngredientList ) 
+                {
+                    _dbContext.Ingredients.Add(ingredient);
+                }
+
+                _dbContext.Recipes.Add(recipe);
+                _dbContext.SaveChanges();
+            }
         }
 
         public void Delete(Recipe recipe)
@@ -54,7 +61,7 @@ namespace CocktailApp.Repository
         public void Clear()
         {
             var allRecipes = this.All();
-            
+            //_dbContext.Recipes.RemoveRange()
         }
 
         public IEnumerable<Recipe> All()

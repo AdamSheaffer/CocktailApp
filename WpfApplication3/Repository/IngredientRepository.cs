@@ -34,11 +34,20 @@ namespace CocktailApp.Repository
             //check that it's not already in DB
             var query = from Ingredient in _dbContext.Ingredients
                         where ingredient.Name == Ingredient.Name
+                        && ingredient.IngredientType == Ingredient.IngredientType
                         select Ingredient;
             if(query.ToList<Ingredient>().Count == 0)
             {
                 _dbContext.Ingredients.Add(ingredient);
                 _dbContext.SaveChanges();
+            }
+        }
+
+        public void AddIngredientsFromRecipe(Recipe recipe)
+        {
+            foreach (Ingredient ingredient in recipe.IngredientList)
+            {
+                AddIngredient(ingredient);
             }
         }
 
