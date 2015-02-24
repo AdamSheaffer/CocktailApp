@@ -53,7 +53,8 @@ namespace CocktailApp.Repository
 
         public void Delete(Model.Ingredient recipe)
         {
-            throw new NotImplementedException();
+            _dbContext.Ingredients.Remove(recipe);
+            _dbContext.SaveChanges();
         }
 
         public void Clear()

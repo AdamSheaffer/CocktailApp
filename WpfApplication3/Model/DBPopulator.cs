@@ -23,12 +23,12 @@ namespace CocktailApp.Model
             PinkestGin();
             GinSlush();
             PerfectMartini();
-            //TomCollins();
-            //StrawberryCocktail();
-            //Fitzgerald();
-            //GinSour();
-            //Aviation();
-            //Casino();
+            TomCollins();
+            StrawberryCocktail();
+            Fitzgerald();
+            GinSour();
+            Aviation();
+            Casino();
         }
 
         private void AddAllRecIngs(Recipe recipe)
@@ -111,8 +111,7 @@ namespace CocktailApp.Model
             };
             string instructions = "Fill a cocktail shaker with ice. Pour in 2 ounces of gin, 2 ounces oflemon juice, 1 ounce of simple syrup and a dash of bitters. Cover and shake until the outside of the container is frosty, about 15 seconds. Strain into a highball glass full of ice. Top off with 1/4 cup of cold club soda and garnish with a lemon slice and cherry.";
             Recipe TomCollins = new Recipe("Tom Collins", ings, instructions);
-            recRepo.AddRecipe(TomCollins);
-            AddAllRecIngs(TomCollins);
+            AddToDatabase(TomCollins);
         }
 
         public void StrawberryCocktail()
@@ -126,8 +125,7 @@ namespace CocktailApp.Model
             };
             string instructions = "Place 1 strawberry, 2 basil leaves, and 2 teaspoons of sugar into a cocktail shaker, and mash well with a cocktail muddler. Add ice to the cocktail shaker and also into a tall glass. Pour 2 ounces of gin and 1 ounce of lemon juice, cover, and shake until the outside of the shaker has frosted. Strain into the chilled glass over the ice, top with 3 ounces of club soda, and stir to serve.";
             Recipe StrawberryCocktail = new Recipe("Strawberry Cocktail", ings, instructions);
-            recRepo.AddRecipe(StrawberryCocktail);
-            AddAllRecIngs(StrawberryCocktail);
+            AddToDatabase(StrawberryCocktail);
         }
 
         public void Fitzgerald()
@@ -139,8 +137,7 @@ namespace CocktailApp.Model
             };
             string instructions = "Combine 2 ounces of gin, .75 ounces of Simple Syrup, .75 ounces of Lemon Juice, and 2 dashes of Angostura Bitters in a shaker over ice. Shake and strain into a cocktail glass.";
             Recipe Fitzgerald = new Recipe("Fitzgerald", ings, instructions);
-            recRepo.AddRecipe(Fitzgerald);
-            AddAllRecIngs(Fitzgerald);
+            AddToDatabase(Fitzgerald);
         }
 
         public void GinSour()
@@ -151,8 +148,7 @@ namespace CocktailApp.Model
             };
             string instructions = "Combine 2 ounces of gin, .75 ounces of Simple Syrup, and .75 ounces of Lemon Juice in a shaker over ice. Shake and strain into a cocktail glass.";
             Recipe GinSour = new Recipe("Gin Sour", ings, instructions);
-            recRepo.AddRecipe(GinSour);
-            AddAllRecIngs(GinSour);
+            AddToDatabase(GinSour);
         }
 
         public void Aviation()
@@ -164,8 +160,7 @@ namespace CocktailApp.Model
             };
             string instructions = "Combine 2 ounces of gin, .5 ounces of Maraschino, .25 ounces of Creme de Violette, and .75 ounces of Lemon Juice in a shaker over ice. Shake and strain into a cocktail glass.";
             Recipe Aviation = new Recipe("Aviation", ings, instructions);
-            recRepo.AddRecipe(Aviation);
-            AddAllRecIngs(Aviation);
+            AddToDatabase(Aviation);
         }
 
         public void Casino()
@@ -177,8 +172,7 @@ namespace CocktailApp.Model
             };
             string instructions = "Combine 2 ounces of gin, .5 ounces of Maraschino, .75 ounces of Lemon Juice, and a dash of Orange Bitters in a shaker over ice. Shake and strain into a cocktail glass.";
             Recipe Casino = new Recipe("Casino", ings, instructions);
-            recRepo.AddRecipe(Casino);
-            AddAllRecIngs(Casino);
+            AddToDatabase(Casino);
         }
     }
 }

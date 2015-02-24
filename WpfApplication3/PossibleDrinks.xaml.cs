@@ -9,7 +9,8 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
+using System.Windows.Media.Imaging; 
+using System.Collections.ObjectModel;
 using System.Windows.Shapes;
 using CocktailApp.Repository;
 
@@ -20,14 +21,15 @@ namespace CocktailApp
     /// </summary>
     public partial class PossibleDrinks : Window
     {
-        public RecipeRepository Repo = new RecipeRepository();
-        public IngredientRepository IngRepo = new IngredientRepository();
-        public MyBarRepository MyBarRepo = new MyBarRepository();
+        public PossibleDrinksRepository DrinkRepo = new PossibleDrinksRepository();
+        private RecipeRepository RecRepo = new RecipeRepository();
 
         public PossibleDrinks()
-        {
-
+        {          
             InitializeComponent();
+            List<int> drinkIds = DrinkRepo.FindPossibleDrinkIds();
+            DrinkResults.DataContext = RecRepo.GetRecFromIdList(drinkIds);
+            
         }
     }
 }

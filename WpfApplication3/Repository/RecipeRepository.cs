@@ -96,6 +96,19 @@ namespace CocktailApp.Repository
             return query.First<Recipe>();
         }
 
+        public ObservableCollection<Recipe> GetRecFromIdList(List<int> recipeIds)
+        {
+            ObservableCollection<Recipe> recipes = new ObservableCollection<Recipe>();
+            foreach (int id in recipeIds)
+            {
+                var query = from Recipe in _dbContext.Recipes
+                            where id == Recipe.RecipeId
+                            select Recipe;
+                recipes.Add( query.First<Recipe>() );
+            }
+            return recipes;
+        }
+
         public IEnumerable<Recipe> GetPossibleRecipes(IEnumerable<Ingredient> ingredientList)
         {
             throw new NotImplementedException();
