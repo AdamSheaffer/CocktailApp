@@ -27,8 +27,7 @@ namespace CocktailApp
         public PossibleDrinks()
         {          
             InitializeComponent();
-            List<int> drinkIds = DrinkRepo.FindPossibleDrinkIds();
-            DrinkResults.DataContext = RecRepo.GetRecFromIdList(drinkIds);
+            
             
         }
     }

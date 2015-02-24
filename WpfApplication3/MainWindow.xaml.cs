@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 using System.Data.Entity;
 using CocktailApp.Repository;
 using CocktailApp.Model;
@@ -25,11 +24,29 @@ namespace CocktailApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public RecipeRepository Repo = new RecipeRepository();
-        public IngredientRepository IngRepo = new IngredientRepository();
+
         public MyBarRepository MyBarRepo = new MyBarRepository();
         public MyFavoritesRepository MyFavoritesRepo = new MyFavoritesRepository();
-        public DBPopulator DbPopulator = new DBPopulator();
+
+        private RecipePopulator recipePopulator = new RecipePopulator();
+        private IngredientPopulator ingredientPopulator = new IngredientPopulator();
+
+        public MainWindow()
+        {
+            InitializeComponent();
+            DrinkExplorer.DataContext = recipePopulator.DrinkRecipes();
+            SetIngredientData();
+            SetMyBarData();
+            MyFavorites.DataContext = MyFavoritesRepo.RecipeContext();
+        }
+
+        private void SetIngredientData()
+        {
+            AllLiqueurs.DataContext = ingredientPopulator.findAllOfType("Liqueur");
+            AllBitters.DataContext = ingredientPopulator.findAllOfType("Bitters");
+            AllFruits.DataContext = ingredientPopulator.findAllOfType("Fruit");
+            AllMixers.DataContext = ingredientPopulator.findAllOfType("Mixer");
+        }
 
         private void SetMyBarData()
         {
@@ -39,36 +56,11 @@ namespace CocktailApp
             MyLiqueurs.DataContext = MyBarRepo.GetByType("Liqueur");
         }
 
-        private void SetAllIngredientData()
-        {
-            AllRecipesList.DataContext = Repo.RecipeContext();
-            AllFruits.DataContext = IngRepo.IngType("Fruit");
-            AllMixers.DataContext = IngRepo.IngType("Mixer");
-            AllBitters.DataContext = IngRepo.IngType("Bitters");
-            AllLiqueurs.DataContext = IngRepo.IngType("Liqueur");
-        }
-
-        public MainWindow()
-        {
-            if (Repo.RecipeCount() < 1)
-            {
-                DbPopulator.Populate();
-            }
-            InitializeComponent();
-            SetAllIngredientData();
-            SetMyBarData();
-            MyFavorites.DataContext = MyFavoritesRepo.RecipeContext();
-        }
-
         private void AddToMyBar(object sender, MouseButtonEventArgs e)
         {
             TextBlock myTextBlock = sender as TextBlock;
             Ingredient ingredient = myTextBlock.DataContext as Ingredient;
-            ingredient.IngredientId = IngRepo.GetId(ingredient.Name);
-            MyIngredient myIngredient = new MyIngredient(ingredient);
-            MyBarRepo.Add(myIngredient);
-            IngRepo.Delete(ingredient);
-            SetAllIngredientData();
+            MyBarRepo.Add(ingredient);
             SetMyBarData();
         }
 
@@ -77,22 +69,19 @@ namespace CocktailApp
             Button buttonClicked = e.Source as Button;
             string buttonContent = buttonClicked.Content.ToString();
             TextBlock recipeTextBlock = sender as TextBlock;
-            string recipeName = recipeTextBlock.Text;
-            Recipe selectedRecipe = Repo.GetByName(recipeName);
+            Recipe selectedRecipe = recipeTextBlock.DataContext as Recipe;
 
-            if(buttonContent == "Favorite") 
+            if (buttonContent == "Favorite")
             {
                 MyFavoritesRepo.AddToFavorites(selectedRecipe);
                 MyFavorites.DataContext = MyFavoritesRepo.RecipeContext();
             }
             // if ( view ) {Do something}
-
         }
 
         private void CheckPossibleDrinks(object sender, RoutedEventArgs e)
         {
-            PossibleDrinks drinkResults = new PossibleDrinks();
-            drinkResults.Show();
+            throw new NotImplementedException();
         }
        
     }

@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="IngredientPopulator.cs" />
     <Compile Include="Model\DBPopulator.cs" />
     <Compile Include="Model\MyIngredient.cs" />
     <Compile Include="Model\RecipeIngredient.cs" />
@@ -67,6 +68,7 @@
       <DependentUpon>PossibleDrinks.xaml</DependentUpon>
     </Compile>
     <Compile Include="RecipeContext.cs" />
+    <Compile Include="RecipePopulator.cs" />
     <Compile Include="Repository\IngredientRepository.cs" />
     <Compile Include="Repository\IRecipeRepository.cs" />
     <Compile Include="Repository\MyBarRepository.cs" />

@@ -19,33 +19,27 @@ namespace CocktailApp.Repository
             _dbContext.MyIngredients.Load();
         }
 
-        public void Add(MyIngredient ingredient)
+        public void Add(Ingredient ingredient)
         {
             _dbContext.MyIngredients.Add(ingredient);
             _dbContext.SaveChanges();
         }
 
-        public ObservableCollection<MyIngredient> GetByType(string ingredientType)
+        public ObservableCollection<Ingredient> GetByType(string ingredientType)
         {
             var query = from MyIngredient in _dbContext.MyIngredients
                         where ingredientType == MyIngredient.IngredientType
                         select MyIngredient;
-            var ings = new ObservableCollection<MyIngredient>(query.ToList<MyIngredient>());
+            var ings = new ObservableCollection<Ingredient>(query.ToList<Ingredient>());
             return ings;
         }
 
-        public IEnumerable<MyIngredient> All()
+        public IEnumerable<Ingredient> All()
         {
-            var query = from MyIngredient in _dbContext.MyIngredients
-                        select MyIngredient;
-            return query.ToList<MyIngredient>();
+            var query = from Ingredient in _dbContext.MyIngredients
+                        select Ingredient;
+            return query.ToList<Ingredient>();
         }
 
-        public IEnumerable<int> AllIds()
-        {
-            var query = from MyIngredient in _dbContext.MyIngredients
-                        select MyIngredient.Ingredient_Id;
-            return query.ToList<int>();
-        }
     }
 }
