@@ -31,6 +31,23 @@ namespace CocktailApp
         public MyFavoritesRepository MyFavoritesRepo = new MyFavoritesRepository();
         public DBPopulator DbPopulator = new DBPopulator();
 
+        private void SetMyBarData()
+        {
+            MyFruits.DataContext = MyBarRepo.GetByType("Fruit");
+            MyMixers.DataContext = MyBarRepo.GetByType("Mixer");
+            MyBitters.DataContext = MyBarRepo.GetByType("Bitters");
+            MyLiqueurs.DataContext = MyBarRepo.GetByType("Liqueur");
+        }
+
+        private void SetAllIngredientData()
+        {
+            AllRecipesList.DataContext = Repo.RecipeContext();
+            AllFruits.DataContext = IngRepo.IngType("Fruit");
+            AllMixers.DataContext = IngRepo.IngType("Mixer");
+            AllBitters.DataContext = IngRepo.IngType("Bitters");
+            AllLiqueurs.DataContext = IngRepo.IngType("Liqueur");
+        }
+
         public MainWindow()
         {
             if (Repo.RecipeCount() < 1)
@@ -38,15 +55,8 @@ namespace CocktailApp
                 DbPopulator.Populate();
             }
             InitializeComponent();
-            AllRecipesList.DataContext = Repo.RecipeContext();
-            AllFruits.DataContext = IngRepo.IngType("Fruit");
-            AllMixers.DataContext = IngRepo.IngType("Mixer");
-            AllBitters.DataContext = IngRepo.IngType("Bitters");
-            AllLiqueurs.DataContext = IngRepo.IngType("Liqueur");
-            MyFruits.DataContext = MyBarRepo.GetByType("Fruit");
-            MyMixers.DataContext = MyBarRepo.GetByType("Mixer");
-            MyBitters.DataContext = MyBarRepo.GetByType("Bitters");
-            MyLiqueurs.DataContext = MyBarRepo.GetByType("Liqueur");
+            SetAllIngredientData();
+            SetMyBarData();
             MyFavorites.DataContext = MyFavoritesRepo.RecipeContext();
         }
 
@@ -57,10 +67,9 @@ namespace CocktailApp
             ingredient.IngredientId = IngRepo.GetId(ingredient.Name);
             MyIngredient myIngredient = new MyIngredient(ingredient);
             MyBarRepo.Add(myIngredient);
-            MyFruits.DataContext = MyBarRepo.GetByType("Fruit");
-            MyMixers.DataContext = MyBarRepo.GetByType("Mixer");
-            MyBitters.DataContext = MyBarRepo.GetByType("Bitters");
-            MyLiqueurs.DataContext = MyBarRepo.GetByType("Liqueur");
+            IngRepo.Delete(ingredient);
+            SetAllIngredientData();
+            SetMyBarData();
         }
 
         private void ViewOrAddTOMyBar(object sender, RoutedEventArgs e)
