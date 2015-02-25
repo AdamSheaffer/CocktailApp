@@ -105,5 +105,11 @@ namespace CocktailApp
             MyBarRepo.Delete(ingredient);
             SetMyBarData();
         }
+
+        private void EmptyMyBar(object sender, RoutedEventArgs e)
+        {
+            MyBarRepo.Clear();
+            SetMyBarData();
+        }
     }
 }

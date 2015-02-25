@@ -22,13 +22,29 @@ namespace CocktailApp.Repository
 
         public void Add(Ingredient ingredient)
         {
-            _dbContext.MyIngredients.Add(ingredient);
-            _dbContext.SaveChanges();
+            var query = from Ingredient in _dbContext.MyIngredients
+                        where Ingredient.Name == ingredient.Name
+                        && Ingredient.IngredientType == ingredient.IngredientType
+                        select Ingredient;
+            if (query.ToList<Ingredient>().Count == 0)
+            {
+                _dbContext.MyIngredients.Add(ingredient);
+                _dbContext.SaveChanges();
+            }
         }
 
         public void Delete(Ingredient ingredient)
         {
             _dbContext.MyIngredients.Remove(ingredient);
+            _dbContext.SaveChanges();
+        }
+
+        public void Clear()
+        {
+            foreach (Ingredient ingredient in All())
+            {
+                _dbContext.MyIngredients.Remove(ingredient);
+            }
             _dbContext.SaveChanges();
         }
 
