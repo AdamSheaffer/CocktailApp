@@ -111,5 +111,11 @@ namespace CocktailApp
             MyBarRepo.Clear();
             SetMyBarData();
         }
+
+        private void ShowRecipeForm(object sender, RoutedEventArgs e)
+        {
+            NewRecipeForm newRecipeForm = new NewRecipeForm();
+            newRecipeForm.Show();
+        }
     }
 }

@@ -114,8 +114,9 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <Button Content="What Can I Make?" Height="60" Width="250" Margin="0,0,0,10" Click="CheckPossibleDrinks"/>
-                <Button Content="Empty My Bar" Height="60" Width="250" Click="EmptyMyBar" />
+                <Button Content="What Can I Make?" Height="40" Width="250" Margin="0,0,0,10" Click="CheckPossibleDrinks"/>
+                <Button Content="Empty My Bar" Height="40" Width="250" Margin="0,0,0,10" Click="EmptyMyBar" />
+                <Button Content="Add Drink" Height="40" Width="250" Click="ShowRecipeForm"/>
             </StackPanel>
         </StackPanel>
     </Grid>
