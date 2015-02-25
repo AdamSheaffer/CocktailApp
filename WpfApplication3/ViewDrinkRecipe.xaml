@@ -1,0 +1,20 @@
+﻿<Window x:Class="CocktailApp.ViewDrinkRecipe"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ViewDrinkRecipe" Height="300" Width="300">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <TextBlock Name="DrinkName"></TextBlock>
+            <TextBlock>Ingredients</TextBlock>
+            <ListBox Name="DrinkIngredients" ItemsSource="{Binding}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />  
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <TextBlock>Instructions</TextBlock>
+            <TextBlock Name="DrinkInstructions"></TextBlock>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -10,5 +10,6 @@ namespace CocktailApp
     public class MyBarContext : DbContext
     {
         public DbSet<Model.Ingredient> MyIngredients { get; set; }
+        public DbSet<Model.Recipe> MyFavorites { get; set; }
     }
 }

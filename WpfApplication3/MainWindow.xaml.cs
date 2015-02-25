@@ -76,13 +76,30 @@ namespace CocktailApp
                 MyFavoritesRepo.AddToFavorites(selectedRecipe);
                 MyFavorites.DataContext = MyFavoritesRepo.RecipeContext();
             }
-            // if ( view ) {Do something}
+            else if (buttonContent == "View")
+            {
+                ViewRecipe(selectedRecipe);
+            }
         }
 
         private void CheckPossibleDrinks(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            PossibleDrinks drinkResults = new PossibleDrinks();
+            drinkResults.Show();
         }
-       
+
+        public void ViewRecipe(Recipe recipe)
+        {
+            ViewDrinkRecipe recipeWindow = new ViewDrinkRecipe();
+            recipeWindow.Show();
+            recipeWindow.DrinkIngredients.DataContext = recipe.IngredientList;
+            recipeWindow.DrinkInstructions.Text = recipe.Instructions;
+            recipeWindow.DrinkName.Text = recipe.Name;
+        }
+
+        private void DeleteFromBar(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

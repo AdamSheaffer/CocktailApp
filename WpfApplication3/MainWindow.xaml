@@ -76,28 +76,28 @@
                         <ListBox Name="MyLiqueurs" Width="125" Height="200"  Margin="0,50,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}"/>
+                                    <TextBlock Text="{Binding Name}" MouseUp="DeleteFromBar"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
                         <ListBox Name="MyMixers" Width="125" Height="200" Margin="0,50,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}"/>
+                                    <TextBlock Text="{Binding Name}" MouseUp="DeleteFromBar"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
                         <ListBox Name="MyBitters" Width="125" Height="200" Margin="0,50,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}"/>
+                                    <TextBlock Text="{Binding Name}" MouseUp="DeleteFromBar"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
                         <ListBox Name="MyFruits" Width="125" Height="200" Margin="0,50,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}"/>
+                                    <TextBlock Text="{Binding Name}" MouseUp="DeleteFromBar"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>

@@ -9,24 +9,19 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging; 
-using System.Collections.ObjectModel;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using CocktailApp.Repository;
 
 namespace CocktailApp
 {
     /// <summary>
-    /// Interaction logic for PossibleDrinks.xaml
+    /// Interaction logic for ViewDrinkRecipe.xaml
     /// </summary>
-    public partial class PossibleDrinks : Window
+    public partial class ViewDrinkRecipe : Window
     {
-        private MyBarRepository Repo = new MyBarRepository();
-
-        public PossibleDrinks()
-        {          
+        public ViewDrinkRecipe()
+        {
             InitializeComponent();
-            DrinkResults.DataContext = Repo.FindPossibleDrinks();
         }
     }
 }

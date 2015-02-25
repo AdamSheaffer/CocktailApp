@@ -60,7 +60,6 @@
     </ApplicationDefinition>
     <Compile Include="IngredientPopulator.cs" />
     <Compile Include="Model\DBPopulator.cs" />
-    <Compile Include="Model\MyIngredient.cs" />
     <Compile Include="Model\RecipeIngredient.cs" />
     <Compile Include="MyBarContext.cs" />
     <Compile Include="MyFavoritesContext.cs" />
@@ -76,6 +75,9 @@
     <Compile Include="Repository\PossibleDrinksRepository.cs" />
     <Compile Include="Repository\RecipeIngredientRepository.cs" />
     <Compile Include="Repository\RecipeRepository.cs" />
+    <Compile Include="ViewDrinkRecipe.xaml.cs">
+      <DependentUpon>ViewDrinkRecipe.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -89,6 +91,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PossibleDrinks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewDrinkRecipe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

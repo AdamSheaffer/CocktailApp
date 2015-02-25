@@ -10,11 +10,11 @@ namespace CocktailApp.Repository
 {
     public class MyFavoritesRepository
     {
-        private MyFavoritesContext _dbContext;
+        private MyBarContext _dbContext;
 
         public MyFavoritesRepository()
         {
-            _dbContext = new MyFavoritesContext();
+            _dbContext = new MyBarContext();
             _dbContext.MyFavorites.Load();
         }
 
