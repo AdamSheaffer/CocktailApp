@@ -14,15 +14,17 @@ namespace CocktailApp.Model
         private RecipeContext Repo = new RecipeContext();
 
         public int RecipeIngredientId { get; set; }
-        public int Recipe_Id { get; set; }
-        public int Ingredient_Id { get; set; }
+        public string Recipe_Name { get; set; }
+        public string Ingredient_Name { get; set; }
+        public string Ingredient_Type { get; set; }
 
         public RecipeIngredient() { }
 
-        public RecipeIngredient(int recipeId, int ingredientId)
+        public RecipeIngredient(string recipeName, string ingredientName, string ingredientType)
         {
-            this.Recipe_Id = recipeId;
-            this.Ingredient_Id = ingredientId;
+            this.Recipe_Name = recipeName;
+            this.Ingredient_Name = ingredientName;
+            this.Ingredient_Type = ingredientType;
         }
     }
 }

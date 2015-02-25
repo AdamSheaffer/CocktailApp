@@ -59,7 +59,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="IngredientPopulator.cs" />
-    <Compile Include="Model\DBPopulator.cs" />
     <Compile Include="Model\RecipeIngredient.cs" />
     <Compile Include="MyBarContext.cs" />
     <Compile Include="MyFavoritesContext.cs" />
@@ -72,11 +71,9 @@
     <Compile Include="RecipeContext.cs" />
     <Compile Include="RecipePopulator.cs" />
     <Compile Include="Repository\IngredientRepository.cs" />
-    <Compile Include="Repository\IRecipeRepository.cs" />
     <Compile Include="Repository\MyBarRepository.cs" />
     <Compile Include="Repository\MyFavoritesRepository.cs" />
     <Compile Include="Repository\PossibleDrinksRepository.cs" />
-    <Compile Include="Repository\RecipeIngredientRepository.cs" />
     <Compile Include="Repository\RecipeRepository.cs" />
     <Compile Include="ViewDrinkRecipe.xaml.cs">
       <DependentUpon>ViewDrinkRecipe.xaml</DependentUpon>

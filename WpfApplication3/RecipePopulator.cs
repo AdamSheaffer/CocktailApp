@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CocktailApp.Model;
+using CocktailApp.Repository;
 using System.Collections.ObjectModel;
 
 namespace CocktailApp
 {
     public class RecipePopulator
     {
+        private RecipeRepository RecipeRepo = new RecipeRepository();
 
         public ObservableCollection<Recipe> DrinkRecipes()
         {
@@ -23,7 +25,69 @@ namespace CocktailApp
             drinkList.Add(Fitzgerald());
             drinkList.Add(Aviation());
             drinkList.Add(Casino());
+            drinkList.Add(PerfectMartini());
+            foreach(Recipe recipe in UserRecipes()) 
+            {
+                drinkList.Add(recipe);
+            }
             return drinkList;
+        }
+
+        public ObservableCollection<Recipe> UserRecipes()
+        {
+            ObservableCollection<Recipe> recipeList = new ObservableCollection<Recipe>();
+            foreach (string recipeName in RecipeNameList())
+            {
+                IEnumerable<RecipeIngredient> recipeIngs = GetRecipeIngredientsByName(recipeName);
+                recipeList.Add(BuildFromRecipeIngredients(recipeIngs));
+            }
+            return recipeList;
+        }
+
+        private List<string> RecipeNameList()
+        {
+            List<string> recipeNames = new List<string>();
+            foreach (Recipe recipe in RecipeRepo.All())
+            {
+                recipeNames.Add(recipe.Name);
+            }
+            return recipeNames;
+        }
+
+        private IEnumerable<RecipeIngredient> GetRecipeIngredientsByName(string recipeName)
+        {
+            var query = from RecipeIngredient in RecipeRepo.AllRecipeIngredients()
+                        where RecipeIngredient.Recipe_Name == recipeName
+                        select RecipeIngredient;
+            return query.ToList<RecipeIngredient>();
+        }
+
+        private string GetInstructions(string recipeName)
+        {
+            var query = from Recipe in RecipeRepo.All()
+                        where Recipe.Name == recipeName
+                        select Recipe;
+            return query.First<Recipe>().Instructions;
+        }
+
+        private Recipe BuildFromRecipeIngredients(IEnumerable<RecipeIngredient> recipeIngs)
+        {
+            Recipe recipe = new Recipe();
+            recipe.Name = recipeIngs.First<RecipeIngredient>().Recipe_Name;
+            recipe.Instructions = GetInstructions(recipe.Name);
+            recipe.IngredientList = GetIngredients(recipe.Name);
+            return recipe;
+        }
+
+        private Ingredient[] GetIngredients(string recipeName)
+        {
+            List<Ingredient> necessaryIngredients = new List<Ingredient>();
+            foreach (RecipeIngredient recIng in GetRecipeIngredientsByName(recipeName))
+            {
+                Ingredient ingredient = new Ingredient(recIng.Ingredient_Name, recIng.Ingredient_Type);
+                necessaryIngredients.Add(ingredient);
+            }
+            return necessaryIngredients.ToArray();
         }
 
         public Recipe Aviatrix()
@@ -31,7 +95,7 @@ namespace CocktailApp
            Ingredient[] ings = {
                 new Ingredient("Lillet Blanc", "Liqueur"),
                 new Ingredient("Creme de Violette", "Liqueur"),
-                new Ingredient("Lemon", "Bitters"),
+                new Ingredient("Lemon Bitters", "Bitters"),
                 new Ingredient("Lemon", "Fruit")
             };
             string instructions = "Over ice, stir 2 ounces of gin, 1 ounce of Lillet Blanc, 1 teaspoon Creme de Violette, and 2 dashes of Lemon Bitters. Add Lemon twist for garnish.";
@@ -45,7 +109,7 @@ namespace CocktailApp
                 new Ingredient("Grapefruit Juice", "Mixer"),
                 new Ingredient("Lemon Juice", "Mixer"),
                 new Ingredient("Quince Syrup", "Mixer"),
-                new Ingredient("Peychaud's ", "Bitters")
+                new Ingredient("Peychaud's Bitters", "Bitters")
             };
             string instructions = "Fill a cocktail shaker with ice. Add 2 ounces of gin, .5 ounces of grapefruit juice, .25 ounces of lemon juice, 1 ounces quince syrup, and 2 dashes of bitters. Shake until well chilled, about 20 seconds. Strain into a coupe glass.";
             Recipe PinkestGin = new Recipe("Pinkest Gin", ings, instructions);
@@ -81,7 +145,7 @@ namespace CocktailApp
             Ingredient[] ings = {
                 new Ingredient("Lemon Juice", "Mixer"),
                 new Ingredient("Simple Syrup", "Mixer"),
-                new Ingredient("Angostura", "Bitters"),
+                new Ingredient("Angostura Bitters", "Bitters"),
                 new Ingredient("Club Soda", "Mixer"),
                 new Ingredient("Lemon", "Fruit"),
                 new Ingredient("Cherry", "Fruit")
@@ -110,7 +174,7 @@ namespace CocktailApp
             Ingredient[] ings = {
                 new Ingredient("Lemon Juice", "Mixer"),
                 new Ingredient("Simple Syrup", "Mixer"),
-                new Ingredient("Angostura", "Bitters")
+                new Ingredient("Angostura Bitters", "Bitters")
             };
             string instructions = "Combine 2 ounces of gin, .75 ounces of Simple Syrup, .75 ounces of Lemon Juice, and 2 dashes of Angostura Bitters in a shaker over ice. Shake and strain into a cocktail glass.";
             Recipe Fitzgerald = new Recipe("Fitzgerald", ings, instructions);
@@ -145,7 +209,7 @@ namespace CocktailApp
             Ingredient[] ings = {
                 new Ingredient("Lemon Juice", "Mixer"),
                 new Ingredient("Maraschino ", "Liqueur"),
-                new Ingredient("Orange", "Bitters")
+                new Ingredient("Orange Bitters", "Bitters")
             };
             string instructions = "Combine 2 ounces of gin, .5 ounces of Maraschino, .75 ounces of Lemon Juice, and a dash of Orange Bitters in a shaker over ice. Shake and strain into a cocktail glass.";
             Recipe Casino = new Recipe("Casino", ings, instructions);

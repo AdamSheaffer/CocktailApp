@@ -41,12 +41,33 @@ namespace CocktailApp.Repository
 
                 foreach(Model.Ingredient ingredient in recipe.IngredientList ) 
                 {
-                    _dbContext.Ingredients.Add(ingredient);
+                    AddIngredient(ingredient);
+                    RecipeIngredient recIng = new RecipeIngredient(recipe.Name, ingredient.Name, ingredient.IngredientType);
+                    AddRecipeIngredient(recIng);
                 }
 
                 _dbContext.Recipes.Add(recipe);
                 _dbContext.SaveChanges();
             }
+        }
+
+        public void AddIngredient(Ingredient ingredient)
+        {
+            var query = from Ingredient in _dbContext.Ingredients
+                        where Ingredient.Name == ingredient.Name
+                        && Ingredient.IngredientType == ingredient.IngredientType
+                        select Ingredient;
+            if (query.ToList<Ingredient>().Count == 0)
+            {
+                _dbContext.Ingredients.Add(ingredient);
+                _dbContext.SaveChanges();
+            }
+        }
+
+        public void AddRecipeIngredient(RecipeIngredient recipeIngredient)
+        {
+            _dbContext.RecipeIngredients.Add(recipeIngredient);
+            _dbContext.SaveChanges();
         }
 
         public void Delete(Recipe recipe)
@@ -56,12 +77,16 @@ namespace CocktailApp.Repository
                         select Recipe;
             Recipe recipeToDelete = query.First<Recipe>();
             _dbContext.Recipes.Remove(recipeToDelete);
+            _dbContext.SaveChanges();
         }
 
         public void Clear()
         {
-            var allRecipes = this.All();
-            //_dbContext.Recipes.RemoveRange()
+            foreach (Recipe recipe in All())
+            {
+                Delete(recipe);
+            }
+            _dbContext.SaveChanges();
         }
 
         public IEnumerable<Recipe> All()
@@ -69,6 +94,13 @@ namespace CocktailApp.Repository
             var query = from Recipe in _dbContext.Recipes
                         select Recipe;
             return query.ToList<Recipe>();
+        }
+
+        public IEnumerable<RecipeIngredient> AllRecipeIngredients()
+        {
+            var query = from RecipeIngredient in _dbContext.RecipeIngredients
+                        select RecipeIngredient;
+            return query.ToList<RecipeIngredient>();
         }
 
         public Recipe GetByName(string name)

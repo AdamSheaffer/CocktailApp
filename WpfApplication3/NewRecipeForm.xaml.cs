@@ -21,6 +21,8 @@ namespace CocktailApp
     /// </summary>
     public partial class NewRecipeForm : Window
     {
+        private RecipeRepository RecipeRepo = new RecipeRepository();
+
         public NewRecipeForm()
         {
             InitializeComponent();
@@ -32,6 +34,7 @@ namespace CocktailApp
             recipe.Name = DrinkName.Text;
             recipe.Instructions = DrinkInstructions.Text;
             recipe.IngredientList = GetUserIngredients();
+            RecipeRepo.AddRecipe(recipe);
         }
 
         private string RecipeName {get; set;}
