@@ -62,6 +62,7 @@ namespace CocktailApp
             Ingredient ingredient = myTextBlock.DataContext as Ingredient;
             MyBarRepo.Add(ingredient);
             SetMyBarData();
+            myTextBlock.IsEnabled = false;
         }
 
         private void ViewOrAddTOMyBar(object sender, RoutedEventArgs e)
@@ -99,7 +100,10 @@ namespace CocktailApp
 
         private void DeleteFromBar(object sender, MouseButtonEventArgs e)
         {
-
+            TextBlock myTextBlock = sender as TextBlock;
+            Ingredient ingredient = myTextBlock.DataContext as Ingredient;
+            MyBarRepo.Delete(ingredient);
+            SetMyBarData();
         }
     }
 }

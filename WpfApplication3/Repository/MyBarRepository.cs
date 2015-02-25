@@ -26,6 +26,12 @@ namespace CocktailApp.Repository
             _dbContext.SaveChanges();
         }
 
+        public void Delete(Ingredient ingredient)
+        {
+            _dbContext.MyIngredients.Remove(ingredient);
+            _dbContext.SaveChanges();
+        }
+
         public ObservableCollection<Ingredient> GetByType(string ingredientType)
         {
             var query = from MyIngredient in _dbContext.MyIngredients
@@ -67,7 +73,7 @@ namespace CocktailApp.Repository
             IEnumerable<Ingredient> myIngredients = All();
             foreach (Ingredient ingredient in recipe.IngredientList)
             {
-                if (!HasIngredient(recipe.IngredientList, ingredient))
+                if (!HasIngredient(myIngredients, ingredient))
                 {
                     return false;
                 }
@@ -75,7 +81,7 @@ namespace CocktailApp.Repository
             return true;
         }
 
-        public bool HasIngredient(Ingredient[] ingredientList, Ingredient ingredient)
+        public bool HasIngredient(IEnumerable<Ingredient> ingredientList, Ingredient ingredient)
         {
             var query = from Ingredient in ingredientList
                         where Ingredient.Name == ingredient.Name
