@@ -76,13 +76,25 @@ namespace CocktailApp
 
             if (buttonContent == "Favorite")
             {
-                MyFavoritesRepo.AddToFavorites(selectedRecipe);
-                MyFavorites.DataContext = MyFavoritesRepo.RecipeContext();
+                AddToFavorites(selectedRecipe);
             }
             else if (buttonContent == "View")
             {
                 ViewRecipe(selectedRecipe);
             }
+        }
+
+        private void AddToFavorites(Recipe recipe)
+        {
+            var query = from Recipe in MyFavoritesRepo.All()
+                        where Recipe.Name == recipe.Name
+                        select Recipe;
+            if (query.ToList<Recipe>().Count == 0)
+            {
+                MyFavoritesRepo.AddToFavorites(recipe);
+                MyFavorites.DataContext = MyFavoritesRepo.RecipeContext();
+            }
+            
         }
 
         private void CheckPossibleDrinks(object sender, RoutedEventArgs e)
