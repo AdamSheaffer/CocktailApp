@@ -31,9 +31,15 @@ namespace CocktailApp.Repository
             return query.ToList<Recipe>();
         }
 
-        public void AddToFavorites(Model.Recipe recipe)
+        public void AddToFavorites(Recipe recipe)
         {
             _dbContext.MyFavorites.Add(recipe);
+            _dbContext.SaveChanges();
+        }
+
+        public void Delete(Recipe recipe)
+        {
+            _dbContext.MyFavorites.Remove(recipe);
             _dbContext.SaveChanges();
         }
     }

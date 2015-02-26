@@ -39,7 +39,6 @@ namespace CocktailApp
             ingredientPopulator.PopulateIngredientList();
             SetIngredientData();
             SetMyBarData();
-            MyFavorites.DataContext = MyFavoritesRepo.RecipeContext();
         }
 
         public void SetIngredientData()
@@ -64,7 +63,6 @@ namespace CocktailApp
             Ingredient ingredient = myTextBlock.DataContext as Ingredient;
             MyBarRepo.Add(ingredient);
             SetMyBarData();
-            myTextBlock.IsEnabled = false;
         }
 
         private void ViewOrAddTOMyBar(object sender, RoutedEventArgs e)
@@ -73,29 +71,12 @@ namespace CocktailApp
             string buttonContent = buttonClicked.Content.ToString();
             TextBlock recipeTextBlock = sender as TextBlock;
             Recipe selectedRecipe = recipeTextBlock.DataContext as Recipe;
-
-            if (buttonContent == "Favorite")
-            {
-                AddToFavorites(selectedRecipe);
-            }
-            else if (buttonContent == "View")
+            if (buttonContent == "View")
             {
                 ViewRecipe(selectedRecipe);
             }
         }
 
-        private void AddToFavorites(Recipe recipe)
-        {
-            var query = from Recipe in MyFavoritesRepo.All()
-                        where Recipe.Name == recipe.Name
-                        select Recipe;
-            if (query.ToList<Recipe>().Count == 0)
-            {
-                MyFavoritesRepo.AddToFavorites(recipe);
-                MyFavorites.DataContext = MyFavoritesRepo.RecipeContext();
-            }
-            
-        }
 
         private void CheckPossibleDrinks(object sender, RoutedEventArgs e)
         {
@@ -126,10 +107,11 @@ namespace CocktailApp
             SetMyBarData();
         }
 
-        private void ShowRecipeForm(object sender, RoutedEventArgs e)
+        public void ShowRecipeForm(object sender, RoutedEventArgs e)
         {
             NewRecipeForm newRecipeForm = new NewRecipeForm();
             newRecipeForm.Show();
         }
+
     }
 }

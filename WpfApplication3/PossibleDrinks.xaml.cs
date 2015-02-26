@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Collections.ObjectModel;
 using System.Windows.Shapes;
 using CocktailApp.Repository;
+using CocktailApp.Model;
 
 namespace CocktailApp
 {
@@ -27,6 +28,18 @@ namespace CocktailApp
         {          
             InitializeComponent();
             DrinkResults.DataContext = Repo.FindPossibleDrinks();
+        }
+
+        private void ShowRecipe(object sender, RoutedEventArgs e)
+        {
+            Button buttonClicked = e.Source as Button;
+            string buttonContent = buttonClicked.Content.ToString();
+            TextBlock recipeTextBlock = sender as TextBlock;
+            Recipe selectedRecipe = recipeTextBlock.DataContext as Recipe;
+            var mainWindow = Application.Current.Windows
+                .Cast<Window>()
+                .FirstOrDefault(window => window is MainWindow) as MainWindow;
+            mainWindow.ViewRecipe(selectedRecipe);
         }
     }
 }

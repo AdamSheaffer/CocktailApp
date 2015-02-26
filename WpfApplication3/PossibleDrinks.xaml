@@ -6,7 +6,9 @@
         <ListBox Name="DrinkResults" ItemsSource="{Binding}" Height="300" Width="300">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}"/>
+                    <TextBlock Text="{Binding Name}" PreviewMouseDown="ShowRecipe">
+                      <Button Content="View" />
+                    </TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>          
         </ListBox>
