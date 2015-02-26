@@ -67,7 +67,8 @@ namespace CocktailApp.Repository
         public ObservableCollection<Recipe> FindPossibleDrinks()
         {
             ObservableCollection<Recipe> PossibleDrinks = new ObservableCollection<Recipe>();
-            foreach (Recipe recipe in recipePopulator.DrinkRecipes())
+            recipePopulator.PopulateDrinkRecipes();
+            foreach (Recipe recipe in recipePopulator.DrinkRecipes)
             {
                 if (HasAllIngredients(recipe))
                 {

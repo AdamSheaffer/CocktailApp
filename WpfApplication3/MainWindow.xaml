@@ -12,7 +12,7 @@
                     <ListBox Name="AllRecipesList" ItemsSource="{Binding}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Name}" PreviewMouseDown="ViewOrAddTOMyBar">
+                            <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" PreviewMouseDown="ViewOrAddTOMyBar">
                                 <Button x:Name="ViewRecipe">View</Button>
                                 <Button x:Name="AddToFavorites">Favorite</Button>
                             </TextBlock>
@@ -36,28 +36,28 @@
                         <ListBox Name="AllLiqueurs" Width="125" Height="200" Margin="0,50,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}" MouseUp="AddToMyBar"/>
+                                    <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="AddToMyBar"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
                         <ListBox Name="AllMixers" Width="125" Height="200" Margin="0,50,0,0" ItemsSource="{Binding}" ScrollViewer.HorizontalScrollBarVisibility="Auto">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}" MouseUp="AddToMyBar"/>
+                                    <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="AddToMyBar"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
                         <ListBox Name="AllBitters" Width="125" Height="200" Margin="0,50,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}" MouseUp="AddToMyBar"/>
+                                    <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="AddToMyBar"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
                         <ListBox Name="AllFruits" Width="125" Height="200" Margin="0,50,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}" MouseUp="AddToMyBar"/>
+                                    <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="AddToMyBar"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
@@ -76,28 +76,28 @@
                         <ListBox Name="MyLiqueurs" Width="125" Height="200"  Margin="0,50,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}" MouseUp="DeleteFromBar"/>
+                                    <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="DeleteFromBar"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
                         <ListBox Name="MyMixers" Width="125" Height="200" Margin="0,50,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}" MouseUp="DeleteFromBar"/>
+                                    <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="DeleteFromBar"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
                         <ListBox Name="MyBitters" Width="125" Height="200" Margin="0,50,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}" MouseUp="DeleteFromBar"/>
+                                    <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="DeleteFromBar"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
                         <ListBox Name="MyFruits" Width="125" Height="200" Margin="0,50,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name}" MouseUp="DeleteFromBar"/>
+                                    <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="DeleteFromBar"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
@@ -110,7 +110,7 @@
                 <ListBox Name="MyFavorites" Height="300" Width="250" Margin="0,0,0,10" ItemsSource="{Binding}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"/>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>

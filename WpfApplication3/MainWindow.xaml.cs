@@ -28,24 +28,26 @@ namespace CocktailApp
         public MyBarRepository MyBarRepo = new MyBarRepository();
         public MyFavoritesRepository MyFavoritesRepo = new MyFavoritesRepository();
 
-        private RecipePopulator recipePopulator = new RecipePopulator();
-        private IngredientPopulator ingredientPopulator = new IngredientPopulator();
+        public RecipePopulator recipePopulator = new RecipePopulator();
+        public IngredientPopulator ingredientPopulator = new IngredientPopulator();
 
         public MainWindow()
         {
             InitializeComponent();
-            DrinkExplorer.DataContext = recipePopulator.DrinkRecipes();
+            recipePopulator.PopulateDrinkRecipes();
+            DrinkExplorer.DataContext = recipePopulator.DrinkRecipes;
+            ingredientPopulator.PopulateIngredientList();
             SetIngredientData();
             SetMyBarData();
             MyFavorites.DataContext = MyFavoritesRepo.RecipeContext();
         }
 
-        private void SetIngredientData()
+        public void SetIngredientData()
         {
-            AllLiqueurs.DataContext = ingredientPopulator.findAllOfType("Liqueur");
-            AllBitters.DataContext = ingredientPopulator.findAllOfType("Bitters");
-            AllFruits.DataContext = ingredientPopulator.findAllOfType("Fruit");
-            AllMixers.DataContext = ingredientPopulator.findAllOfType("Mixer");
+            AllLiqueurs.DataContext = ingredientPopulator.Ingredients.Where(c => c.IngredientType == "Liqueur");
+            AllBitters.DataContext = ingredientPopulator.Ingredients.Where(c => c.IngredientType =="Bitters");
+            AllFruits.DataContext = ingredientPopulator.Ingredients.Where(c => c.IngredientType == "Fruit");
+            AllMixers.DataContext = ingredientPopulator.Ingredients.Where(c => c.IngredientType == "Mixer");
         }
 
         private void SetMyBarData()

@@ -10,33 +10,68 @@ namespace CocktailApp
 {
     public class IngredientPopulator
     {
+        public ObservableCollection<Ingredient> Ingredients;
+
         private RecipePopulator recipePopulator = new RecipePopulator();
 
-        private bool NewIngredient(string name, ObservableCollection<Ingredient> ingredients)
+        private bool NewIngredient(Ingredient ingredient, ObservableCollection<Ingredient> ingredients)
         {
             var query = from Ingredient in ingredients
-                        where Ingredient.Name == name
+                        where Ingredient.Name == ingredient.Name
+                        && Ingredient.IngredientType == ingredient.IngredientType
                         select Ingredient;
             return (query.ToList<Ingredient>().Count == 0);
         }
 
-        public ObservableCollection<Ingredient> findAllOfType(string type)
+        public void PopulateIngredientList()
         {
-            ObservableCollection<Ingredient> ingredients = new ObservableCollection<Ingredient>();
+            Ingredients = new ObservableCollection<Ingredient>();
             
-            foreach (Recipe recipe in recipePopulator.DrinkRecipes())
+            recipePopulator.PopulateDrinkRecipes();
+            foreach (Recipe recipe in recipePopulator.DrinkRecipes)
             {
                 foreach (Ingredient ingredient in recipe.IngredientList)
                 {
-                    if (ingredient.IngredientType == type && 
-                        NewIngredient(ingredient.Name, ingredients))
+                    if (NewIngredient(ingredient, Ingredients))
                     {
-                        ingredients.Add(ingredient);
+                        Ingredients.Add(ingredient);
                     }
                 }
-            }       
-            return ingredients;
+            }
         }
+
+        public void AddUserIngredient(Ingredient[] newIngredients)
+        {
+            foreach (Ingredient ingredient in newIngredients)
+            {
+                var query = from Ingredient in Ingredients
+                            where Ingredient.Name == ingredient.Name
+                            && Ingredient.IngredientType == ingredient.IngredientType
+                            select Ingredient;
+                if (query.ToList<Ingredient>().Count == 0)
+                {
+                    Ingredients.Add(ingredient);
+                }
+            }          
+        }
+
+        //public ObservableCollection<Ingredient> findAllOfType(string type)
+        //{
+        //    ObservableCollection<Ingredient> ingredients = new ObservableCollection<Ingredient>();
+        //    recipePopulator.PopulateDrinkRecipes();
+        //    foreach (Recipe recipe in recipePopulator.DrinkRecipes)
+        //    {
+        //        foreach (Ingredient ingredient in recipe.IngredientList)
+        //        {
+        //            if (ingredient.IngredientType == type && 
+        //                NewIngredient(ingredient.Name, ingredients))
+        //            {
+        //                ingredients.Add(ingredient);
+        //            }
+        //        }
+        //    }       
+        //    return ingredients;
+        //}
   
     }
 }

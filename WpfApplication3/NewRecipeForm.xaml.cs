@@ -22,6 +22,7 @@ namespace CocktailApp
     public partial class NewRecipeForm : Window
     {
         private RecipeRepository RecipeRepo = new RecipeRepository();
+        public RecipePopulator RecipesPop;
 
         public NewRecipeForm()
         {
@@ -35,6 +36,13 @@ namespace CocktailApp
             recipe.Instructions = DrinkInstructions.Text;
             recipe.IngredientList = GetUserIngredients();
             RecipeRepo.AddRecipe(recipe);
+            var mainWindow = Application.Current.Windows
+                .Cast<Window>()
+                .FirstOrDefault(window => window is MainWindow) as MainWindow;
+            mainWindow.recipePopulator.DrinkRecipes.Add(recipe);
+            mainWindow.ingredientPopulator.AddUserIngredient(recipe.IngredientList);
+            mainWindow.SetIngredientData();
+            Close();
         }
 
         private string RecipeName {get; set;}

@@ -13,24 +13,25 @@ namespace CocktailApp
     {
         private RecipeRepository RecipeRepo = new RecipeRepository();
 
-        public ObservableCollection<Recipe> DrinkRecipes()
+        public ObservableCollection<Recipe> DrinkRecipes;
+
+        public void PopulateDrinkRecipes()
         {
-            ObservableCollection<Recipe> drinkList = new ObservableCollection<Recipe>();
-            drinkList.Add(Aviatrix());
-            drinkList.Add(PinkestGin());
-            drinkList.Add(GinSlush());
-            drinkList.Add(TomCollins());
-            drinkList.Add(StrawberryCocktail());
-            drinkList.Add(GinSour());
-            drinkList.Add(Fitzgerald());
-            drinkList.Add(Aviation());
-            drinkList.Add(Casino());
-            drinkList.Add(PerfectMartini());
+            DrinkRecipes = new ObservableCollection<Recipe>();
+            DrinkRecipes.Add(Aviatrix());
+            DrinkRecipes.Add(PinkestGin());
+            DrinkRecipes.Add(GinSlush());
+            DrinkRecipes.Add(TomCollins());
+            DrinkRecipes.Add(StrawberryCocktail());
+            DrinkRecipes.Add(GinSour());
+            DrinkRecipes.Add(Fitzgerald());
+            DrinkRecipes.Add(Aviation());
+            DrinkRecipes.Add(Casino());
+            DrinkRecipes.Add(PerfectMartini());
             foreach(Recipe recipe in UserRecipes()) 
             {
-                drinkList.Add(recipe);
+                DrinkRecipes.Add(recipe);
             }
-            return drinkList;
         }
 
         public ObservableCollection<Recipe> UserRecipes()
