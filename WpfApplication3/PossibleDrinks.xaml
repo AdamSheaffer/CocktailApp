@@ -1,13 +1,14 @@
 ﻿<Window x:Class="CocktailApp.PossibleDrinks"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="PossibleDrinks" Height="300" Width="300">
+        Title="PossibleDrinks" Height="300" Width="300" Background="#88CC88" FontWeight="Bold">
     <Grid>
-        <ListBox Name="DrinkResults" ItemsSource="{Binding}" Height="300" Width="300">
+        <TextBlock Text="You Can Make..." HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,20" FontSize="22" />
+        <ListBox Name="DrinkResults" ItemsSource="{Binding}" Height="220" Width="280" Background="#88CC88" HorizontalAlignment="Center" VerticalAlignment="Bottom" BorderBrush="Transparent">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}" PreviewMouseDown="ShowRecipe">
-                      <Button Content="View" />
+                      <Button Content="View" Margin="10,0,0,0"/>
                     </TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>          

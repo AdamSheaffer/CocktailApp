@@ -15,8 +15,8 @@
                 <ListBox Name="AllRecipesList" ItemsSource="{Binding}" Height="305">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" PreviewMouseDown="ViewOrAddTOMyBar">
-                                <Button x:Name="ViewRecipe">View</Button>
+                            <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" PreviewMouseDown="ViewOrAddTOMyBar" HorizontalAlignment="Left" Width="250">
+                                <Button x:Name="ViewRecipe" Width="50" HorizontalAlignment="Right" Margin="10,0,0,0">View</Button>
                             </TextBlock>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -40,28 +40,28 @@
                         <ListBox Name="AllLiqueurs" Width="160" Height="182" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="AddToMyBar"/>
+                                    <TextBlock FontWeight="SemiBold" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="AddToMyBar"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
                         <ListBox Name="AllMixers" Width="160" Height="182" ItemsSource="{Binding}" ScrollViewer.HorizontalScrollBarVisibility="Auto">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="AddToMyBar"/>
+                                    <TextBlock FontWeight="SemiBold" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="AddToMyBar"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
                         <ListBox Name="AllBitters" Width="160" Height="182" Margin="0,0,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="AddToMyBar"/>
+                                    <TextBlock FontWeight="SemiBold" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="AddToMyBar"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
                         <ListBox Name="AllFruits" Width="160" Height="182" Margin="0,0,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="AddToMyBar"/>
+                                    <TextBlock FontWeight="SemiBold" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="AddToMyBar"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
@@ -80,28 +80,28 @@
                         <ListBox Name="MyLiqueurs" Width="160" Height="183"  Margin="0,60,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="DeleteFromBar"/>
+                                    <TextBlock FontWeight="SemiBold" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="DeleteFromBar"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
                         <ListBox Name="MyMixers" Width="160" Height="183" Margin="0,60,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="DeleteFromBar"/>
+                                    <TextBlock FontWeight="SemiBold" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="DeleteFromBar"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
                         <ListBox Name="MyBitters" Width="160" Height="183" Margin="0,60,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="DeleteFromBar"/>
+                                    <TextBlock FontWeight="SemiBold" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="DeleteFromBar"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
                         <ListBox Name="MyFruits" Width="160" Height="183" Margin="0,60,0,0" ItemsSource="{Binding}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="DeleteFromBar"/>
+                                    <TextBlock FontWeight="SemiBold" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MouseUp="DeleteFromBar"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
