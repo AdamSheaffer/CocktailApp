@@ -28,6 +28,10 @@ namespace CocktailApp
             DrinkRecipes.Add(Aviation());
             DrinkRecipes.Add(Casino());
             DrinkRecipes.Add(PerfectMartini());
+            DrinkRecipes.Add(GinRickey());
+            DrinkRecipes.Add(GoldenSlipper());
+            DrinkRecipes.Add(PerfectLady());
+            DrinkRecipes.Add(Negroni());
             foreach(Recipe recipe in UserRecipes()) 
             {
                 DrinkRecipes.Add(recipe);
@@ -215,6 +219,54 @@ namespace CocktailApp
             string instructions = "Combine 2 ounces of gin, .5 ounces of Maraschino, .75 ounces of Lemon Juice, and a dash of Orange Bitters in a shaker over ice. Shake and strain into a cocktail glass.";
             Recipe Casino = new Recipe("Casino", ings, instructions);
            return Casino;
+        }
+
+        public Recipe GinRickey() {
+            Ingredient[] ings = {
+                new Ingredient("Lime", "Fruit"),
+                new Ingredient("Club Soda", "Mixer"),
+                new Ingredient("Simple Syrup", "Mixer")
+            };
+            string instructions = "Fill a 10-ounce Collins glass with ice. Squeeze lime into the glass, getting as much juice out of it as you can. Toss in the lime shell, then add 2 ounces of gin. Top off glass with chilled club soda. The rickey doesn't need it, but if you like a sweeter drink, add splash of simple syrup.";
+            Recipe GinRickey = new Recipe("Gin Rickey", ings, instructions);
+            return GinRickey;
+        }
+
+        public Recipe GoldenSlipper()
+        {
+            Ingredient[] ings = {
+                new Ingredient("Egg Liqueur", "Liqueur"),
+                new Ingredient("Orange Juice", "Mixer"),
+                new Ingredient("Egg White", "Mixer"),
+                new Ingredient("Simple Syrup", "Mixer")
+            };
+            string instructions = "Fill a shaker with ice cubes. Add equal parts all ingredients. Shake and strain into a chilled cocktail glass.";
+            Recipe GoldenSlipper = new Recipe("Golden Slipper", ings, instructions);
+            return GoldenSlipper;
+        }
+
+        public Recipe PerfectLady()
+        {
+            Ingredient[] ings = {
+                new Ingredient("Lemon Juice", "Mixer"),
+                new Ingredient("Peach Liqueur", "Liqueur"),
+                new Ingredient("Absinthe", "Liqueur")
+            };
+            string instructions = "Fill a shaker with ice cubes. Add 1 part gin, 2 parts Lemon Juice, 1 part Peach Liqueur, and 1 part Absinthe. Shake and strain into a chilled cocktail glass.";
+            Recipe PerfectLady = new Recipe("Perfect Lady", ings, instructions);
+            return PerfectLady;
+        }
+
+        public Recipe Negroni()
+        {
+            Ingredient[] ings = {
+                new Ingredient("Campari", "Liqueur"),
+                new Ingredient("Sweet Vermouth", "Liqueur"),
+                new Ingredient("Orange", "Fruit")
+            };
+            string instructions = "Fill a chilled rocks glass with ice cubes. Add equal parts gin, Campari, and Vermouth. Stir. Garnish with Orange.";
+            Recipe Negroni = new Recipe("Negroni", ings, instructions);
+            return Negroni;
         }
     }
 }
